@@ -22,6 +22,7 @@ if (!isset($_POST['username'])) { //όσο δεν έχει πατήσει submit
     $neosXrhsths->login();
     if ($neosXrhsths->us_role_id != NULL) {
         $_SESSION['username']= $neosXrhsths->username;
+        $_SESSION['rolosXrhsth']= $neosXrhsths->us_role_id;
         header("Location: index.php");
     }
     

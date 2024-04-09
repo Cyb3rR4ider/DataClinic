@@ -6,7 +6,6 @@ class Users
     var $password;
     var $user_email;
     var $user_tel;
-    var $us_pat_id;
     var $us_role_id;
 
     public function __construct()
@@ -16,7 +15,6 @@ class Users
         $this->password = NULL;
         $this->user_email = NULL;
         $this->user_tel = NULL;
-        $this->us_pat_id = NULL;
         $this->us_role_id = NULL;
     } //end of construct
 
@@ -28,6 +26,16 @@ class Users
     function getAllUsers(){
         $bash=new Database();
         $bash->getAllUsers();
+    }
+
+    function getUser() {
+        $DB = new Database();
+        $DB->getUser($this);
+    }
+
+    function deleteUser() {
+        $DB = new Database();
+        $DB->deleteUser($this);
     }
 
 }//End of Users Class
