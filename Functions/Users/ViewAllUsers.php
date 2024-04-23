@@ -41,7 +41,7 @@
                         <i class="fa fa-eye"></i></button>
                 </form>
                 <form style ="float: left; padding: 2px;" method="post" action="index.php?action=6">
-                    <input style=" display:none ;color: red; width: 0px; height: 0px;" type="text" name="passidview" value="<?php echo $row['user_id'] ?>" readonly>
+                    <input style=" display:none ;color: red; width: 0px; height: 0px;" type="text" name="passidres" value="<?php echo $row['user_id'] ?>" readonly>
                     <button type="submit" title="Reset Password" class="btn btn-success btn-primary">
                         <i class="fa fa-undo"></i></button>
                 </form>

@@ -29,6 +29,12 @@ switch ($a) {
             include ("Functions/Users/Resetpassword.php");
             break;
         }
+
+        case 7 : { 
+            include ("Functions/Patient/ViewAllPatients.php");
+            break;
+        }
+           
         case 40 : {
             include ("Functions/Appointments/ViewAllAppointments.php");
             break;

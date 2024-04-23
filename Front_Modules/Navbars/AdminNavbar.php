@@ -22,7 +22,7 @@
           Ασθενείς
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Προβολή όλων των Ασθενών</a>
+          <a class="dropdown-item" href="index.php?action=7">Προβολή όλων των Ασθενών</a>
           <a class="dropdown-item" href="">Εισαγωγή Ασθενή</a>
           <a class="dropdown-item" href="#">Αναζήτηση Ασθενή</a>
       </li>

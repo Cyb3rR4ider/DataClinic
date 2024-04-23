@@ -18,24 +18,69 @@ class Users
         $this->us_role_id = NULL;
     } //end of construct
 
-    function login(){
-        $bash=new Database();
-        $bash->login($this);
+    function login($password)
+    {
+        /* Search in the database the user that match the username - password and retrieve all the information
+            to fill the object with them, so we can use them in the authentication. */
+        $query = "SELECT `user_id`, `username` , `user_email`, `user_tel`, 
+        `us_role_id`, `password`
+        FROM `users` 
+        WHERE `username`= ?";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query, [$this->username]);
+        $row = $data->fetch();
+        if (password_verify($password, $row["password"])) {
+            $this->user_id = $row["user_id"];
+            $this->username = $row["username"];
+            $this->user_email = $row["user_email"];
+            $this->user_tel = $row["user_tel"];
+            $this->us_role_id = $row["us_role_id"];
+        }
     }
 
-    function getAllUsers(){
-        $bash=new Database();
-        $bash->getAllUsers();
+
+    function getAllUsers()
+    {
+        /* Search all the users and return them as arraylist of objects. */
+        $users = new ArrayObject();
+        $query = "SELECT `user_id`, `username`, 
+        `user_email`, `user_tel`, `us_role_id` 
+        FROM `users`;";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query, []);
+        $i = 0;
+        while ($row = $data->fetch()) {
+            $users[$i] = new Users();
+            $users[$i]->user_id = $row["user_id"];
+            $users[$i]->username = $row["username"];
+            $users[$i]->user_email = $row["user_email"];
+            $users[$i]->user_tel = $row["user_tel"];
+            $users[$i]->us_role_id = $row["us_role_id"];
+            $i++;
+        }
+        return $users;
     }
 
-    function getUser() {
-        $DB = new Database();
-        $DB->getUser($this);
+    function getUser()
+    {
+         
+        $query = "SELECT  * FROM users WHERE user_id = ?;";
+        $database = new Database();
+        $database->connect();
+        $user = $database->execute($query, [$this->user_id]);
+
+        return $user;
     }
 
-    function deleteUser() {
-        $DB = new Database();
-        $DB->deleteUser($this);
+    function deleteUser()
+    {
+        /* Delete a user based on the ID */
+        $query = "DELETE from users where user_id = ?;";
+        $database = new Database();
+        $database->connect();
+        $database->execute($query, [$this->user_id]);
     }
     function updateUser()
     {
