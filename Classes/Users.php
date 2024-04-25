@@ -91,14 +91,17 @@ class Users
         $database->execute($query, [$this->username, $this->user_email, $this->user_tel, $this->us_role_id, $this->password, $this->user_id]);
     }
 
-    function insertUser()
+    function insertUser($username, $password, $email, $telephone, $us_role_id)
     {
         /* Insert new user */
         $query = "INSERT INTO users(username, password, user_email, user_tel, us_role_id) VALUES (?, ?, ?, ?, ?);";
         $database = new Database();
         $database->connect();
-        $database->execute($query, [$this->username, $this->password, $this->user_email, $this->user_tel, $this->us_role_id]);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $success = $database->execute($query, [$username, $hashed_password, $email, $telephone, $us_role_id]);
+        return $success; // Return success status (true or false)
     }
+    
     function updatePasswordUser($password) {
         $query = "UPDATE users SET password = ? WHERE user_id = ?;";
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);

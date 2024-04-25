@@ -48,4 +48,4 @@ if (!isset($_POST['newPassword'])) {
         echo "<p class='success'>Password successfully changed.</p>";
     }
 }
-?>
+

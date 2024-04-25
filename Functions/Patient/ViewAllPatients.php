@@ -34,12 +34,6 @@
                         echo "<td class='smaller-space'>" . $row['pat_amk'] . "</td>";
                     ?>
                     <td class="btn-group">
-                        <form method="post" action="index.php?action=4">
-                            <input type="hidden" name="passiddel" value="<?php echo $row['pat_id'] ?>">
-                            <button type="submit" class="btn btn-danger" title="Διαγραφή Ασθενή">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </form>
                         <form method="post" action="index.php?action=5">
                             <input type="hidden" name="passidview" value="<?php echo $row['pat_id'] ?>">
                             <button type="submit" class="btn btn-info" title="Προβολή Ασθενή">

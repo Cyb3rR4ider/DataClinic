@@ -13,7 +13,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=3">Προβολή όλων των χρηστών</a>
-          <a class="dropdown-item" href="">Εισαγωγή Χρήστη</a>
+          <a class="dropdown-item" href="index.php?action=10">Εισαγωγή Χρήστη</a>
           <a class="dropdown-item" href="#">Αναζήτηση Χρήστη</a>
       </li>
       <!-- Eδώ κλείνει το dropdown -->
@@ -31,7 +31,7 @@
           Ραντεβού
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="index.php?action=40">Προβολή όλων των Ραντεβού</a>
+          <a class="dropdown-item" href="index.php?action=8">Προβολή όλων των Ραντεβού</a>
           <a class="dropdown-item" href="index.php?action=41">Εισαγωγή Ραντεβού</a>
           <a class="dropdown-item" href="index.php?action=42">Αναζήτηση Ραντεβού</a>
       </li>
