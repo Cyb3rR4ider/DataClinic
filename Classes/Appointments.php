@@ -72,4 +72,14 @@ class Appointments
         $database->connect();
         $database->execute($query, [$this->app_status, $this->app_type, $this->app_dt, $this->app_tm_st, $this->app_tm_end, $this->app_pat_id]);
     }
+    function getAppointment()
+    {
+         
+        $query = "SELECT  * FROM appointments WHERE app_id = ?;";
+        $database = new Database();
+        $database->connect();
+        $appoint = $database->execute($query, [$this->app_id]);
+
+        return $appoint;
+    }
 }
