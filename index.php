@@ -26,7 +26,7 @@ require_once("Classes/Users.php");
     } else {
         $a = -1;
     }
-    if (isset($_SESSION['username'])) { //Αν ο χρήστης είναι logged in
+    if (isset($_SESSION['username']) && isset($_SESSION['rolosXrhsth'])){ //Αν ο χρήστης είναι logged in
         if (($_SESSION['rolosXrhsth']) == 4) { //αν ειναι admin
             include("Front_Modules/Navbars/AdminNavbar.php");
         }
@@ -39,6 +39,7 @@ require_once("Classes/Users.php");
         if (($_SESSION['rolosXrhsth']) == 3) { //αν ειναι Secretary
             include("Front_Modules/Navbars/SecretaryNavbar.php");
         }
+    
     } else {
         include("Front_Modules/Login.php");
     }

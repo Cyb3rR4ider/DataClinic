@@ -1,14 +1,14 @@
 <?php
 if (!isset($_POST['DelUser'])) {
     $xrhsthsProsDiagrafh=new Users();
-    $xrhsthsProsDiagrafh->user_id=$_POST['passiddel'];
-    $xrhsthsProsDiagrafh->getUser();
+    $xrhsthsProsDiagrafh->user_id=$_POST['passiddel']; //παιρνει το user_id που το πηρε μολις πατηθηκε το κουμπι που το εχει στο value
+    $xrhsthsProsDiagrafh->getAllUsers(); // φερνει τον user  με το id που πηρε 
     ?>
 
 <h2 class="danger">ΠΡΟΣΟΧΗ ΘΑ ΔΙΑΓΡΑΨΕΙΣ ΤΟΝ ΧΡΗΣΤΗ:</h2>
 
 <?php
-echo $xrhsthsProsDiagrafh->username;
+echo $xrhsthsProsDiagrafh->username; //δειχνει το username που θελουμε να διαγραψουμε
 ?>
         <form action="" method="post">
         <input style=" display:none ;color: red; width: 0px; height: 0px;" type="text" name="passiddel" value="<?php echo $xrhsthsProsDiagrafh->user_id ?>" readonly>

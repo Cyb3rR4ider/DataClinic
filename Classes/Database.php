@@ -9,7 +9,7 @@ class Database
     private $pdo;
     private $opt;
 
-    public $onoma;
+
 
     public function __construct()
     {

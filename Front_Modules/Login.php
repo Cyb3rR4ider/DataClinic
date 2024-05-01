@@ -19,10 +19,13 @@ if (!isset($_POST['username'])) { //όσο δεν έχει πατήσει submit
     $neosXrhsths = new Users();
     $neosXrhsths->username = $_POST['username'];
     $neosXrhsths->password = $_POST['PasswordInput'];
-    $neosXrhsths->login();
+    $neosXrhsths->login($neosXrhsths->password);
     if ($neosXrhsths->us_role_id != NULL) {
         $_SESSION['username']= $neosXrhsths->username;
         $_SESSION['rolosXrhsth']= $neosXrhsths->us_role_id;
+        header("Location: index.php");
+    }
+    else {
         header("Location: index.php");
     }
     
