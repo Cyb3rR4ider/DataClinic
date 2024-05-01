@@ -46,7 +46,11 @@ switch ($a) {
             include ("Functions/Users/AddUser.php");
             break;
         }
+        case 11 : {
+            include ("Functions/Users/UpdateUser.php");
+            break;
+        }
        
-        
+
     }
     

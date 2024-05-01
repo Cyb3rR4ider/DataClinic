@@ -34,8 +34,7 @@ if (!isset($_POST['username'])) {
     // Process the form submission when the submit button is pressed.
     $neosXrhsths = new Users();
     $neosXrhsths->username = $_POST['username'];
-    $neosXrhsths->password = $_POST['PasswordInput'];
-    $neosXrhsths->login();
+    $neosXrhsths->login( $_POST['PasswordInput']);
     if ($neosXrhsths->us_role_id != NULL) {
         $_SESSION['username'] = $neosXrhsths->username;
         $_SESSION['rolosXrhsth'] = $neosXrhsths->us_role_id;

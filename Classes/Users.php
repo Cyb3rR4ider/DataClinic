@@ -65,7 +65,7 @@ class Users
 
     function getUser()
     {
-         
+
         $query = "SELECT  * FROM users WHERE user_id = ?;";
         $database = new Database();
         $database->connect();
@@ -84,11 +84,20 @@ class Users
     }
     function updateUser()
     {
-        /* Update user based on the ID */
-        $query = "Update users SET username = ?, user_email = ?, user_tel = ?, us_role_id = ?, password = ? where user_id = ?";
-        $database = new Database();
-        $database->connect();
-        $database->execute($query, [$this->username, $this->user_email, $this->user_tel, $this->us_role_id, $this->password, $this->user_id]);
+        try {
+            /* Update user based on the ID */
+            $query = "Update users SET username = ?, user_email = ?, user_tel = ?, us_role_id = ?, password = ? where user_id = ?";
+            $database = new Database();
+            $database->connect();
+            $x= $database->execute($query, [$this->username, $this->user_email, $this->user_tel, $this->us_role_id, $this->password, $this->user_id]);
+            if($x){
+                $_SESSION['status'] = 'Επιτυχής Εισαγωγή';
+            }else {
+                echo 'Κάτι πήγε στραβά';
+            } 
+        } catch (Exception $e) {
+            echo "Update Failed.Try Again"; // .$e->getMessage();
+        }
     }
 
     function insertUser($username, $password, $email, $telephone, $us_role_id)
@@ -101,22 +110,19 @@ class Users
         $success = $database->execute($query, [$username, $hashed_password, $email, $telephone, $us_role_id]);
         return $success; // Return success status (true or false)
     }
-    
-    function updatePasswordUser($password) {
+
+    function updatePasswordUser($password)
+    {
         $query = "UPDATE users SET password = ? WHERE user_id = ?;";
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $database = new Database();
         $database->connect();
         $success = $database->execute($query, [$hashed_password, $this->user_id]);
-    
+
         if ($success) {
             echo "Επιτυχής αλλαγή κωδικού πρόσβασης!";
         } else {
             echo "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.";
         }
     }
-    
-    
-
-
 }//End of Users Class

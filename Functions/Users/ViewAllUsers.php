@@ -45,6 +45,12 @@
                     <button type="submit" title="Reset Password" class="btn btn-success btn-primary">
                         <i class="fa fa-undo"></i></button>
                 </form>
+                <form style ="float: left; padding: 2px;" method="post" action="index.php?action=11">
+                    <input style=" display:none ;color: red; width: 0px; height: 0px;" type="text" name="passidupdate" value="<?php echo $row['user_id'] ?>" readonly>
+                    <button type="submit" title="Edit User" class="btn btn-success btn-primary">
+                    <i class="fa fa-pencil-square" aria-hidden="true"></i>
+
+                </form>
                 </td>
             <?php
 
