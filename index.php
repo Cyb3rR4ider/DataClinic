@@ -2,6 +2,8 @@
 session_start();
 require_once("Classes/Database.php");
 require_once("Classes/Users.php");
+require_once("Classes/Patient.php");
+require_once("Classes/Appointments.php");
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +43,8 @@ require_once("Classes/Users.php");
         }
     
     } else {
-        include("Front_Modules/Login.php");
+       include("Front_Modules/Login.php");
+      
     }
     include("Front_Modules/MainContent.php");
     ?>

@@ -22,6 +22,6 @@ else{//μολις πατηθεί το κουμπί διαγραφής
     $deletedUser=new Users();
     $deletedUser->user_id=$_POST['passiddel'];
     $deletedUser->deleteUser();
-    header("Location: index.php?action=3");
+   
 
 }

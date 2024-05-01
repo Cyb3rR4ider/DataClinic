@@ -16,7 +16,7 @@ class Users
         $this->user_email = NULL;
         $this->user_tel = NULL;
         $this->us_role_id = NULL;
-    }
+    } //end of construct
 
     function login($password)
     {
@@ -38,6 +38,7 @@ class Users
             $this->us_role_id = $row["us_role_id"];
         }
     }
+
 
     function getAllUsers()
     {
@@ -62,15 +63,25 @@ class Users
         return $users;
     }
 
+    function getUser()
+    {
+         
+        $query = "SELECT  * FROM users WHERE user_id = ?;";
+        $database = new Database();
+        $database->connect();
+        $user = $database->execute($query, [$this->user_id]);
+
+        return $user;
+    }
+
     function deleteUser()
     {
         /* Delete a user based on the ID */
-        $query = "DELETE from users where user_id = ?";
+        $query = "DELETE from users where user_id = ?;";
         $database = new Database();
         $database->connect();
         $database->execute($query, [$this->user_id]);
     }
-
     function updateUser()
     {
         /* Update user based on the ID */
@@ -80,12 +91,32 @@ class Users
         $database->execute($query, [$this->username, $this->user_email, $this->user_tel, $this->us_role_id, $this->password, $this->user_id]);
     }
 
-    function insertUser()
+    function insertUser($username, $password, $email, $telephone, $us_role_id)
     {
         /* Insert new user */
         $query = "INSERT INTO users(username, password, user_email, user_tel, us_role_id) VALUES (?, ?, ?, ?, ?);";
         $database = new Database();
         $database->connect();
-        $database->execute($query, [$this->username, $this->password, $this->user_email, $this->user_tel, $this->us_role_id]);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $success = $database->execute($query, [$username, $hashed_password, $email, $telephone, $us_role_id]);
+        return $success; // Return success status (true or false)
     }
-}
+    
+    function updatePasswordUser($password) {
+        $query = "UPDATE users SET password = ? WHERE user_id = ?;";
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $database = new Database();
+        $database->connect();
+        $success = $database->execute($query, [$hashed_password, $this->user_id]);
+    
+        if ($success) {
+            echo "Επιτυχής αλλαγή κωδικού πρόσβασης!";
+        } else {
+            echo "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.";
+        }
+    }
+    
+    
+
+
+}//End of Users Class
