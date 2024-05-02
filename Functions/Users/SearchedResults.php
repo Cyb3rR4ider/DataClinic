@@ -31,9 +31,8 @@ if (isset($_POST['input'])) {  //value in POST come from ajax method as data opt
                     echo "<td>" . $us1->user_email = $row['user_email'] . "</td>";
                     echo "<td>" . $us1->user_tel = $row['user_tel'] . "</td>";
                     echo "<td>" . $us1->us_role_id = $row['us_role_id'] . "</td>";
+                 //   echo ("</tr>");
                 
-                }
-
                 ?>
                    <td>
                 <form style ="float: left; padding: 2px;" method="post" action="index.php?action=4">
@@ -58,11 +57,13 @@ if (isset($_POST['input'])) {  //value in POST come from ajax method as data opt
 
                 </form>
                 </td>
+                <?php
+                 echo ("</tr>");
+                }
+                ?>    
                 
             </tbody>
-            <?php
-                echo ("</tr>");
-                ?>
+            
         </table>
 <?php
     } else {
