@@ -38,7 +38,7 @@ if(!isset($_POST['username'])){
 </div>
 
 <button type="submit" class="btn btn-primary">Ενημέρωση Χρήστη</button>
-<button type="submit" onclick="window.location = 'Index.php';" value="Ακυρωση" class="btn btn-danger">Ακύρωση</button>
+<button type="submit" onclick="window.location = 'index.php';" value="Ακυρωση" class="btn btn-danger">Ακύρωση</button>
 
 </form>
 <?php } else {

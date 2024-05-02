@@ -125,4 +125,15 @@ class Users
             echo "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.";
         }
     }
+
+    function searchUser($name){
+        $query = "SELECT * FROM users WHERE username LIKE '$name%'
+        or user_tel LIKE '$name%' 
+        or user_tel LIKE '$name%' 
+        or user_email like '$name%'; ";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query,[]);
+        return $data;
+    }
 }//End of Users Class

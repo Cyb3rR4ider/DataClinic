@@ -1,5 +1,6 @@
 <?php 
 switch ($a) {
+    
     //-----------------------------Login-Logout------------------------//
     case 0 : {
             include ("Functions/Login.php");
@@ -21,7 +22,7 @@ switch ($a) {
         }
 
         case 5 : {
-            include ("Functions/Users/ViewUser.php");
+            include ("Functions/Users/SearchUser.php");
             break;
         }
 

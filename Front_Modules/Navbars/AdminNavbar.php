@@ -14,7 +14,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=3">Προβολή όλων των χρηστών</a>
           <a class="dropdown-item" href="index.php?action=10">Εισαγωγή Χρήστη</a>
-          <a class="dropdown-item" href="#">Αναζήτηση Χρήστη</a>
+          <a class="dropdown-item" href="index.php?action=5">Αναζήτηση Χρήστη</a>
       </li>
       <!-- Eδώ κλείνει το dropdown -->
       <li class="nav-item dropdown">
@@ -24,7 +24,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=7">Προβολή όλων των Ασθενών</a>
           <a class="dropdown-item" href="">Εισαγωγή Ασθενή</a>
-          <a class="dropdown-item" href="#">Αναζήτηση Ασθενή</a>
+          <a class="dropdown-item" href="">Αναζήτηση Ασθενή</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
