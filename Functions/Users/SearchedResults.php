@@ -1,6 +1,4 @@
 <?php
-include('C:\xampp\htdocs\Draapp_Git\DataClinic\Classes\Database.php');
-include('C:\xampp\htdocs\Draapp_Git\DataClinic\Classes\Users.php');
 if (isset($_POST['input'])) {  //value in POST come from ajax method as data option
     $search = $_POST['input'];
     $us1 = new Users();

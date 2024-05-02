@@ -51,6 +51,10 @@ switch ($a) {
             include ("Functions/Users/UpdateUser.php");
             break;
         }
+        case 12 : {
+            include ("Functions/Users/SearchedResults.php");
+            break;
+        }
        
 
     }
