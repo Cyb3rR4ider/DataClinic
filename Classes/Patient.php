@@ -47,13 +47,17 @@ class Patient
         return $patients;
     }
 
-    function deletePatient()
+   
+
+    function getPatient()
     {
-        /* Delete a Patient from the database */
-        $query = "DELETE from patient where pat_id = ?;";
+         
+        $query = "SELECT  * FROM patient WHERE pat_id = ?;";
         $database = new Database();
         $database->connect();
-        $database->execute($query, [$this->pat_id]);
+        $patient = $database->execute($query, [$this->pat_id]);
+
+        return $patient;
     }
 
     function updatePatient()

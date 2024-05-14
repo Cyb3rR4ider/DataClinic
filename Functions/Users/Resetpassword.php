@@ -1,59 +1,51 @@
 <?php
-$allagipass = new Users(); // Μετακινήστε τη δημιουργία του αντικειμένου έξω από το if block
+// Create a new Users object outside the if block
+$allagipass = new Users();
 
 if (!isset($_POST['newPassword'])) {
-    // Αν δεν έχει υποβληθεί η φόρμα για αλλαγή κωδικού
-    if (isset($_POST['user_id'])) {
-        // Ελέγχουμε αν έχει περαστεί η τιμή user_id
-        $allagipass->user_id = $_POST['user_id'];
-        $allagipass->getUser();
+    // If the form for password change has not been submitted
+    if (isset($_POST['passidres'])) {
+        // Check if the user_id value has been passed
+        $allagipass->user_id = $_POST['passidres'];
     } else {
-        // Αν δεν έχει περαστεί η τιμή user_id
+        // If the user_id value has not been passed
         echo "User ID not provided.";
     }
-?>
-    <!-- Φόρμα για επαναφορά κωδικού -->
-    <h2 class="info">Επαναφορά κωδικού για τον χρήστη: <?php echo $allagipass->username; ?></h2>
-    <form action="" method="post">
-        <input type="hidden" name="passidres" value="<?php echo $allagipass->user_id; ?>"> <!-- Κρυφό πεδίο για το user id -->
-        <label for="newPassword">Νέος κωδικός:</label>
-        <input type="password" id="newPassword" name="newPassword" required><br>
-        <label for="confirmPassword">Επιβεβαίωση κωδικού:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required><br>
-        <!-- Κουμπί υποβολής φόρμας -->
-        <button type="submit" name="resetPassword">Επαναφορά κωδικού</button>
-        <button type="button" onclick="resetForm()">Καθαρισμός</button> <!-- Κουμπί για εκκαθάριση της φόρμας -->
-    </form>
 
-<?php
+    // Flag to track if the form has been displayed
+    $formDisplayed = false;
+
+    if (!$formDisplayed) {
+        // Display the form for password reset
+        echo "<h2 class='info'>Password reset for user: $allagipass->username</h2>";
+        echo "<form action='' method='post'>";
+        echo "<input type='hidden' name='passidres' value='$allagipass->user_id'>"; // Hidden field for user id
+        echo "<label for='newPassword'>New password:</label>";
+        echo "<input type='password' id='newPassword' name='newPassword' required><br>";
+        echo "<label for='confirmPassword'>Confirm password:</label>";
+        echo "<input type='password' id='confirmPassword' name='confirmPassword' required><br>";
+        // Submit button
+        echo "<button type='submit' name='resetPassword'>Reset Password</button>";
+        echo "<button type='button' onclick='resetForm()'>Clear</button>"; // Button to clear the form
+        echo "</form>";
+
+        // Set the flag to true to indicate that the form has been displayed
+        $formDisplayed = true;
+    }
+
 } else {
-    // Αν έχει υποβληθεί η φόρμα για αλλαγή κωδικού
+    // If the form for password change has been submitted
     $changedpass = new Users();
     $id = $_POST['passidres'];
     $pass = $_POST['newPassword'];
     $confirmPass = $_POST['confirmPassword'];
-    if ($pass !== $confirmPass) { // Αν οι κωδικοί δεν ταιριάζουν
-        echo "<p class='error'>Ο κωδικός δεν ταιριάζει. Προσπαθήστε ξανά.</p>";
-        // Εμφανίζουμε ξανά τη φόρμα
-?>
-        <!-- Φόρμα για επαναφορά κωδικού -->
-        <h2 class="info">Επαναφορά κωδικού για τον χρήστη: <?php echo $allagipass->username; ?></h2>
-        <form action="" method="post">
-            <input type="hidden" name="passidres" value="<?php echo $allagipass->user_id; ?>"> <!-- Κρυφό πεδίο για το user id -->
-            <label for="newPassword">Νέος κωδικός:</label>
-            <input type="password" id="newPassword" name="newPassword" required><br>
-            <label for="confirmPassword">Επιβεβαίωση κωδικού:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required><br>
-            <!-- Κουμπί υποβολής φόρμας -->
-            <button type="submit" name="resetPassword">Επαναφορά κωδικού</button>
-            <button type="button" onclick="resetForm()">Καθαρισμός</button> <!-- Κουμπί για εκκαθάριση της φόρμας -->
-        </form>
-<?php
+    if ($pass !== $confirmPass) { // If passwords do not match
+        echo "<p class='error'>Passwords do not match. Please try again.</p>";
     } else {
-        // Εάν οι κωδικοί ταιριάζουν, εκτελούμε την αλλαγή
+        // If passwords match, execute the change
         $changedpass->user_id = $id;
         $changedpass->updatePasswordUser($pass);
-        echo "<p class='success'>Επιτυχής Αλλαγή Κωδικού.</p>";
+        echo "<p class='success'>Password successfully changed.</p>";
     }
 }
-?>
+
