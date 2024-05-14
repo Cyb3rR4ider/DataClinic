@@ -63,15 +63,20 @@ class Users
         return $users;
     }
 
-    function getUser()
+    function getUser(&$user_id)
     {
-
         $query = "SELECT  * FROM users WHERE user_id = ?;";
         $database = new Database();
         $database->connect();
-        $user = $database->execute($query, [$this->user_id]);
-
-        return $user;
+        $user_data = $database->execute($query, [$this->user_id]);
+        
+        while($row = $user_data->fetch()){
+            $this->user_id = $row['user_id'];
+            $this->username = $row['username'];
+            $this->user_email = $row['user_email'];
+            $this->user_tel = $row['user_tel'];
+            $this->us_role_id = $row['us_role_id'];
+        }
     }
 
     function deleteUser()
@@ -91,12 +96,14 @@ class Users
             $database->connect();
             $x= $database->execute($query, [$this->username, $this->user_email, $this->user_tel, $this->us_role_id, $this->password, $this->user_id]);
             if($x){
-                $_SESSION['status'] = 'Επιτυχής Εισαγωγή';
+                //$_SESSION['status'] = 'Επιτυχής Εισαγωγή';
+                echo "<h1> Ενημέρωση Επιτυχης</h1>";
             }else {
-                echo 'Κάτι πήγε στραβά';
+                die('Κάτι πήγε στραβά');
             } 
         } catch (Exception $e) {
-            echo "Update Failed.Try Again"; // .$e->getMessage();
+            echo "<h1>Ανεπιτυχής Ενημέρωση</h1>"; // .$e->getMessage();
+            
         }
     }
 
@@ -128,9 +135,9 @@ class Users
 
     function searchUser($name){
         $query = "SELECT * FROM users WHERE username LIKE '$name%'
+        or us_role_id LIKE '%$name%' 
         or user_tel LIKE '$name%' 
-        or user_tel LIKE '$name%' 
-        or user_email like '$name%'; ";
+        or user_email like '%$name%'; ";
         $database = new Database();
         $database->connect();
         $data = $database->execute($query,[]);

@@ -13,7 +13,7 @@ echo $xrhsthsProsDiagrafh->username; //δειχνει το username που θε�
         <form action="" method="post">
         <input style=" display:none ;color: red; width: 0px; height: 0px;" type="text" name="passiddel" value="<?php echo $xrhsthsProsDiagrafh->user_id ?>" readonly>
             <button class="btn btn-danger"  type="submit" name="DelUser" id="DelUser" onclick="return confirm('Επιβεβαιώστε την διαγραφή')" value="Διαγραφή" class="btn btn-info "><span class="glyphicon glyphicon-trash"></span> Διαγραφή Χρήστη</button>
-            <button class="btn btn-info" type="button" name="cancel" id="cancel" value="Ακύρωση" onclick="window.location = 'Index.php';" class="btn btn-info "><span class="glyphicon glyphicon-remove-sign"></span> Ακύρωση</button>
+				<button class="btn btn-info" type="button" name="cancel" id="cancel" value="Ακύρωση" onclick="window.location = 'Index.php';" class="btn btn-info "><span class="glyphicon glyphicon-remove-sign"></span> Ακύρωση</button>
 
         </form>
 <?php
@@ -22,6 +22,6 @@ else{//μολις πατηθεί το κουμπί διαγραφής
     $deletedUser=new Users();
     $deletedUser->user_id=$_POST['passiddel'];
     $deletedUser->deleteUser();
-   
+    header("Location: index.php?action=3");
 
 }

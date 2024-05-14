@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 require_once("Classes/Database.php");
 require_once("Classes/Users.php");
@@ -31,7 +32,7 @@ require_once("Classes/Appointments.php");
     }
     if (isset($_SESSION['username']) && isset($_SESSION['rolosXrhsth'])){ //Αν ο χρήστης είναι logged in
         if (($_SESSION['rolosXrhsth']) == 4) { //αν ειναι admin
-            include("Front_Modules/Navbars/AdminNavbar.php");
+          include("Front_Modules/Navbars/AdminNavbar.php");
         }
         if (($_SESSION['rolosXrhsth']) == 1) { //αν ειναι simple user
             include("Front_Modules/Navbars/SimpleNavbar.php");
