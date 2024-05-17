@@ -12,7 +12,7 @@
             if (input != "") { //if input is not empty then we use ajax method
                 $.ajax({ 
 
-                    url: "index.php?action=12",  // we redirect in this file
+                    url: "Functions/Users/SearchedResults.php",  // we redirect in this file
                     method: "POST",
                     data: {
                         input: input  //with the data input

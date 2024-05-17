@@ -103,7 +103,7 @@ class Users
             } 
         } catch (Exception $e) {
             echo "<h1>Ανεπιτυχής Ενημέρωση</h1>"; // .$e->getMessage();
-            
+               
         }
     }
 

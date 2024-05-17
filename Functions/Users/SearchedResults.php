@@ -1,3 +1,5 @@
+<?php require_once "../../Classes/Database.php";
+require_once "../../Classes/Users.php" ?>
 <?php
 if (isset($_POST['input'])) {  //value in POST come from ajax method as data option
     $search = $_POST['input'];
