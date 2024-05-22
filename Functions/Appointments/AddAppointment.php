@@ -30,7 +30,7 @@
             <input type="number" class="form-control" id="app-pat-id" name="app-pat-id" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Υποβολή</button>
+        <button type="submit" name="sub-btn" class="btn btn-primary">Υποβολή</button>
     
     </form>
 </div>

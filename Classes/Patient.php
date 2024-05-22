@@ -66,15 +66,14 @@ class Patient
             $this->pat_tel = $row["pat_tel"];
         }    
             
-        
-    }
+   }
 
     function updatePatient()
     {
         /* Update a Patient in the database */
         $query = "UPDATE from patient 
         SET pat_name = ?, pat_surname = ?, pat_apoint_valid = ?, 
-        pat_address = ?, pat_tel = ?, pat_birth = ?, pat_birth = ?, pat_amk = ?
+        pat_address = ?, pat_tel = ?, pat_birth = ?, pat_amk = ?
         WHERE pat_id = ?;";
         $database = new Database();
         $database->connect();
@@ -87,12 +86,12 @@ class Patient
     function insertPatient()
     {
         /* Insert a Patient in the database */
-        $query = "INSERT INTO patient(pat_name, pat_surname, pat_apoint_valid, pat_address, pat_tel, pat_birth, pat_amk) VALUES(?, ?, ?, ?, ?, ?, ?";
+        $query = "INSERT INTO patient(`pat_name`, `pat_surname`, `pat_apoint_valid`, `pat_address`, `pat_tel`, `pat_birth`, `pat_amk`) VALUES(?, ?, ?, ?, ?, ?, ?);";
         $database = new Database();
         $database->connect();
-        $database->execute($query, [
-            $this->pat_name, $this->pat_surname,
-            $this->pat_apoint_valid, $this->pat_address, $this->pat_tel, $this->pat_birth, $this->pat_amk
-        ]);
+        $data = $database->execute($query, [$this->pat_name, $this->pat_surname,$this->pat_apoint_valid, $this->pat_address, $this->pat_tel, $this->pat_birth, $this->pat_amk]);
+        if(!$data == ""){
+            echo "Added Patient";
+        }else echo "Failed";
     }
 }

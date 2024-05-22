@@ -3,20 +3,20 @@
 
     <div class="form-group">
         <label for="diagnosis-date">Ημερομηνία Διάγνωσης</label>
-        <input type="text" class="form-control" id="diagnosis-date" name="diagnosis-date" value="<?php echo $diag->diag_dt; ?>" readonly>
+        <input type="text" class="form-control" id="diagnosis-date" name="diagnosis-date" value="<?php echo $diag_date; ?>" readonly>
     </div>
     <div class="form-group">
         <label for="doctor-name">Όνομα Γιατρού</label>
-        <input type="text" value="<?php echo $diag->doctor_name; ?>" class="form-control" id="doctor-name" name="doctor-name" placeholder="Εισάγετε το όνομα του γιατρού" readonly>
+        <input type="text" value="<?php echo $doc_name ?>" class="form-control" id="doctor-name" name="doctor-name" readonly>
     </div>
     <div class="form-group">
         <label for="diagnosis-details">Λεπτομέρειες Διάγνωσης</label>
         <!-- <textarea class="form-control" id="diagnosis-details" name="diagnosis-details" rows="4" placeholder="Εισάγετε τις λεπτομέρειες της διάγνωσης" readonly><?php echo $diag->diag_desc; ?></textarea> -->
-        <table class="table table-dark">
-  <thead>
+  <table class="table table-bordered">
+  <thead class="thead-dark">
     <tr>
-      <th scope="col">Ημερομηνία Διαγνώσης</th>
-      <th scope="col">Λεπτομέρειες Διαγνώσης</th>
+      <th scope="col">Ημερομηνία Διαγνώσης</th> 
+      <th scope="col">Περιγραφή Διαγνώσης</th>
     </tr>
   </thead>
   <tbody>
