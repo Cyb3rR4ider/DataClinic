@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="usernavbar">
-  <a class="navbar-brand" href="#">DataClinic</a>
+<nav class="navbar navbar-expand-lg navbar-light "style="background-color: #e3f2fd;" id="usernavbar">
+  <a class="navbar-brand" href="index.php">DataClinic</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mx-auto"> <!-- changed mr-auto to mx-auto for center -->
       <!-- Αυτό είναι ένα dropdown menu με submenus. -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,8 +23,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=7">Προβολή όλων των Ασθενών</a>
-          <a class="dropdown-item" href="">Εισαγωγή Ασθενή</a>
-          <a class="dropdown-item" href="">Αναζήτηση Ασθενή</a>
+          <a class="dropdown-item" href="index.php?action=22">Εισαγωγή Ασθενή</a>
+          <a class="dropdown-item" href="#">Αναζήτηση Ασθενή</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,8 +32,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=8">Προβολή όλων των Ραντεβού</a>
-          <a class="dropdown-item" href="index.php?action=41">Εισαγωγή Ραντεβού</a>
-          <a class="dropdown-item" href="index.php?action=42">Αναζήτηση Ραντεβού</a>
+          <a class="dropdown-item" href="index.php?action=21">Εισαγωγή Ραντεβού</a>
+          <a class="dropdown-item" href="#">Αναζήτηση Ραντεβού</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +44,7 @@
       </li>
     </ul>
     <form class="d-flex" action="Functions/Logout.php">
-      <button class="btn btn-outline-success" type="submit">Logout</button>
+      <button class="btn btn-outline-primary" type="submit">Logout</button>
     </form>
   </div>
   </div>

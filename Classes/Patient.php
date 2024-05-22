@@ -51,13 +51,22 @@ class Patient
 
     function getPatient()
     {
-         
         $query = "SELECT  * FROM patient WHERE pat_id = ?;";
         $database = new Database();
         $database->connect();
-        $patient = $database->execute($query, [$this->pat_id]);
-
-        return $patient;
+        $data = $database->execute($query, [$this->pat_id]);
+        while($row = $data->fetch()){
+            $this->pat_id = $row["pat_id"];
+            $this->pat_name = $row["pat_name"];
+            $this->pat_surname = $row["pat_surname"];
+            $this->pat_apoint_valid = $row["pat_apoint_valid"];
+            $this->pat_address = $row["pat_address"];
+            $this->pat_birth = $row["pat_birth"];
+            $this->pat_amk = $row["pat_amk"];
+            $this->pat_tel = $row["pat_tel"];
+        }    
+            
+        
     }
 
     function updatePatient()

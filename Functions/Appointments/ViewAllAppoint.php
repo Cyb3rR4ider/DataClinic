@@ -1,16 +1,17 @@
-<h2>ΠΡΟΒΟΛΗ ΟΛΩΝ ΤΩΝ ΡΑΝΤΕΒΟΥ</h2>
+<div class="container mt-5">
+<h2 class="d-flex justify-content-center">ΠΡΟΒΟΛΗ ΟΛΩΝ ΤΩΝ ΡΑΝΤΕΒΟΥ</h2>
 <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Status</th>
-                        <th>Type</th>
-                        <th>Date</th>
+                        <th>ID Ραντεβού</th>
+                        <th>Κατάσταση</th>
+                        <th>Βαρύτητα Ραντεβού</th>
+                        <th>Ημερομηνια Ραντεβού</th>
                         <th>Start</th>
                         <th>End</th>
                         <th>Pat ID</th>
-                        <th>Actions</th>
+                        <th>Ενέργειες</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,5 +48,6 @@
             </table>
         </div>
     </div>
+</div>
 </body>
 </html>

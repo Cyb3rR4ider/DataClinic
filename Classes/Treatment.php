@@ -18,6 +18,21 @@ class Treatment
         $this->tr_diag_id = Null;
     }
 
+    function getTreatment()
+    {
+        $query = "SELECT * FROM treatment WHERE tr_diag_id = ?;";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query, [$this->tr_diag_id]);
+        while ($row = $data->fetch()) {
+            $this->tr_id = $row["tr_id"];
+            $this->tr_desc = $row["tr_desc"];
+            $this->tr_st_dt = $row["tr_st_dt"];
+            $this->tr_end_dt = $row["tr_end_dt"];
+            $this->tr_diag_id = $row["tr_diag_id"];
+        }
+    }
+
     function searchTreatments()
     {
         /* Search Treatments based on a diagnosis ID */

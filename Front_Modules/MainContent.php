@@ -69,6 +69,27 @@ switch ($a) {
             include ("Functions/Users/SearchedResults.php");
             break;
         }
+
+        case 13 : {
+            include("Functions/Patient/PatientCard.php");
+            break;
+        }
+
+        case 14 : {
+            include("Functions/Patient/Contact.php");
+            break;
+
+        }
+
+        case 21 : {
+            include("Functions/Appointments/AddAppointment.php");
+            break;
+        }
+
+        case 22: {
+            include("Functions/Patient/AddPatient.php");
+            break;
+        }
        
 
     }

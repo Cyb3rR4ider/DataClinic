@@ -17,6 +17,21 @@ class Diagnosis
         $this->diag_pat_id = NULL;
     }
 
+    function getDiagnosis(){
+        $query = "SELECT * FROM diagnosis WHERE diag_pat_id = ?;";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query, [$this->diag_pat_id]);
+        while($row = $data->fetch()){
+            $this->diag_id = $row["diag_id"];
+            $this->diag_dt = $row["diag_dt"];
+            $this->diag_desc = $row["diag_desc"];
+            $this->doctor_name = $row["doctor_name"];
+            $this->diag_pat_id = $row["diag_pat_id"];
+        }
+        
+    }
+
     function searchDiagnosis()
     {
         /* Search all the Diagnosis based on the patient ID */
