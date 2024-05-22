@@ -7,10 +7,7 @@ if (isset($_POST['passidview'])) {
 
     $diag = new Diagnosis();
     $diag->diag_pat_id = $patient_id_input; //pass patient id
-    $diag->getDiagnosis();
-
-    
-
+    $data = $diag->getDiagnosis();
 ?>  
     <!-- TABS START-->
     

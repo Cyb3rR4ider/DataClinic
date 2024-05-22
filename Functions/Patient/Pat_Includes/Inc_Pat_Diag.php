@@ -21,16 +21,12 @@
   </thead>
   <tbody>
   <?php
-  
-    echo "<tr>";
-
-    echo "<td>". $diag->diag_dt."</td?>" ;
-    echo "<td>".$diag->diag_desc."</td?>" ;
-      
-        
-
-    echo "</tr>";
-  ?>
+    foreach($data as $diagnosi){
+      echo "<tr>";
+      echo "<td>". $diagnosi->diag_dt."</td?>" ;
+      echo "<td>". $diagnosi->diag_desc."</td?>" ;
+      echo "</tr>";
+    }?>
       </tbody>
 </table>
     </div>

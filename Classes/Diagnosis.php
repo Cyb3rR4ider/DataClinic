@@ -18,17 +18,23 @@ class Diagnosis
     }
 
     function getDiagnosis(){
+        
+        $diagnosis = new ArrayObject();
         $query = "SELECT * FROM diagnosis WHERE diag_pat_id = ?;";
         $database = new Database();
         $database->connect();
         $data = $database->execute($query, [$this->diag_pat_id]);
-        while($row = $data->fetch()){
-            $this->diag_id = $row["diag_id"];
-            $this->diag_dt = $row["diag_dt"];
-            $this->diag_desc = $row["diag_desc"];
-            $this->doctor_name = $row["doctor_name"];
-            $this->diag_pat_id = $row["diag_pat_id"];
+        $i = 0;
+        while ($row = $data->fetch()) {
+            $diagnosis[$i] = new Diagnosis();
+            $diagnosis[$i]->diag_id = $row["diag_id"];
+            $diagnosis[$i]->diag_dt = $row["diag_dt"];
+            $diagnosis[$i]->diag_desc = $row["diag_desc"];
+            $diagnosis[$i]->doctor_name = $row["doctor_name"];
+            $diagnosis[$i]->diag_pat_id = $row["diag_pat_id"];
+            $i++;
         }
+        return $diagnosis;
         
     }
 
