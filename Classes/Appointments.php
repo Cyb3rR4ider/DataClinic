@@ -75,11 +75,17 @@ class Appointments
     function getAppointment()
     {
          
-        $query = "SELECT  * FROM appointments WHERE app_id = ?;";
+        $query = "SELECT * FROM appointments WHERE app_pat_id = ?;";
         $database = new Database();
         $database->connect();
-        $appoint = $database->execute($query, [$this->app_id]);
+        $appoint = $database->execute($query, [$this->app_pat_id]);
 
         return $appoint;
     }
+
+    function status($x){
+        if($x == 1){
+           return "Εκρεμμες";
+        }return "Ολοκληρωμένο";
+    } 
 }

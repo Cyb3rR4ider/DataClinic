@@ -16,10 +16,18 @@ if(!isset($_POST['submit-btn'])){
             <input type="text" class="form-control" id="pat-surname" name="pat-surname">
         </div>
         
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="pat-app-valid">Ραντεβού Ισχύς:</label>
             <input type="text" class="form-control" id="pat-app-valid" name="pat-app-valid">
-        </div>
+        </div> -->
+        <label for="pat-app-valid">Ραντεβού Ισχύς:</label>
+        <div class="form-check">
+            <input class="form-check-input" name="pat-app-valid" type="checkbox" value="1" id="flexCheckDefault" checked>
+            <label class="form-check-label" for="flexCheckDefault">Ενεργό</label>  <br>    
+        
+            <input class="form-check-input" name="pat-app-valid" type="checkbox" value="0" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">Ανενεργό</label> 
+        </div> <br>
 
         <div class="form-group">
             <label for="pat-address">Διεύθυνση Ασθενούς:</label>
@@ -65,6 +73,8 @@ if(!isset($_POST['submit-btn'])){
         
     $patient->insertPatient();
     
+    
+    header("Location: ././index.php?action=7");
     
 }?>
 
