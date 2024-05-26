@@ -88,4 +88,56 @@ class Appointments
            return "Εκρεμμες";
         }return "Ολοκληρωμένο";
     } 
+
+    function comparedates($app_date){
+        $today = new DateTime();
+        $today->setTime(0,0,0);
+        $appointmentDate = Datetime::createFromFormat('Y-m-d H:i:s',$app_date);
+        $appointmentDate->setTime(0,0,0);
+       
+        if($today>$appointmentDate){
+            // $updateQuerytoZero = "UPDATE appointments SET app_status = 0 WHERE app_id = ?;";
+            // $database->execute($updateQuerytoZero, [$this->app_id]);
+            return "Το ραντεβού έχει περάσει";
+        }
+        else if ($today == $appointmentDate){
+            return "Το ραντεβού είναι σήμερα";
+        }else {
+            // $updateQuerytoOne = "UPDATE appointments SET app_status = 1 WHERE app_id = ?;";
+            // $database->execute($updateQuerytoOne, [$this->app_id]);
+            
+            $internal = $today->diff($appointmentDate);
+            $daystogo = $internal->days;
+            return "Απομενουν $daystogo μέρες για το ραντεβού";
+        }
+
+    }
+
+    // function update_appointment_status() {
+    //     $database = new Database();
+    //     $updateQuery = 
+            
+    //     "UPDATE appointments
+    //         SET app_status = CASE
+    //             WHEN CURDATE() > app_dt THEN 0
+    //             ELSE 1
+    //         END";
+    //     $database->execute($updateQuery, []);
+    // }
+
+
+    function appointmentsDaysPassed($app_id){
+        $query = "SELECT (CURRENT_DATE > app_dt) as daysago FROM `appointments` WHERE app_id = ?;";
+        $database = new Database();
+        $database->connect();
+        $appoint_days_passed = $database->execute($query, [$this->app_pat_id]);
+        while($row = $appoint_days_passed->fetch()){
+            $app = $row;
+            $appsep = implode(",",$app); // convert the object to string 
+        }
+
+        return $appsep;
+    }
+
+    
 }

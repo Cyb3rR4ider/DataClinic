@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="diagnosis" role="tabpanel" aria-labelledby="diagnosis-tab">
-    <h2 style="text-align: center;">Διάγνωση</h2>
+    <h2 style="text-align: center;">Διάγνωση για τον <?php echo $patient->pat_name .' '. $patient->pat_surname?></h2>
 
     <!-- <div class="form-group">
         <label for="diagnosis-date">Ημερομηνία Διάγνωσης</label>
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
         <?php
-          foreach($data as $diagnosi){
+          foreach($data_diagnosis as $diagnosi){
             echo "<tr>";
             echo "<td>". $diagnosi->diag_dt."</td?>" ;
             echo "<td>". $diagnosi->diag_desc."</td?>" ;

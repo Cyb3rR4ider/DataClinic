@@ -1,6 +1,8 @@
 <div class="tab-pane fade show active" id="appointments" role="tabpanel" aria-labelledby="appointments-tab">
 
- <?php       
+ <?php  
+       
+        
     while($res = $data_apointment->fetch()){
         
         $app_id_stored = $appointment->app_id = $res['app_id'];
@@ -12,6 +14,9 @@
         $app_pat_id_stored = $appointment->app_pat_id = $res['app_pat_id'];
 
         $checkStatus = $appointment->status($app_status_stored);
+        $daysBefore = $appointment->appointmentsDaysPassed($app_id_stored);
+        $daytoapp = $appointment->comparedates($app_dt_stored);
+        
 
 ?>
     
@@ -20,7 +25,7 @@
         <div class="card">
         <class="card-body">
         <h5 class="card-title" style="text-align:center;">Ραντεβου</h5>
-        <p class="card-text"> ID Ραντεβού</p>
+        <p class="card-text"> Κωδικός Ραντεβού</p>
         <input type="text" class="form-control" id="app-id" name="app-id" value="<?php echo $app_id_stored; ?>" readonly>
         <br>
         <p class="card-text">Κατάσταση</p>
@@ -29,7 +34,7 @@
         <p class="card-text">Προτεραιότητα</p>
         <input type="text" class="form-control" id="patient-address" name="patient-address" value="<?php echo $app_type_stored;?>" readonly>
         <br>
-        <p class="card-text">Ημερομηνία</p>
+        <p class="card-text">Ημερομηνία και Ώρα</p>
         <input type="text" class="form-control" id="patient-address" name="patient-address" value="<?php echo $app_dt_stored; ?>" readonly>
         <br>
         <p class="card-text">Ωρα (Αρχή)</p>
@@ -37,9 +42,13 @@
         <br>
         <p class="card-text">Ωρα (Τέλος)</p>
         <input type="text" class="form-control" id="patient-address" name="patient-address" value="<?php echo $app_time_end_stored; ?>" readonly>
-
+        <br>
+        <p class="card-text" style="color: crimson;"><?php echo $daytoapp;?></p>
+        
+        
+        
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
         </div>
-   <?php echo "<br> <br>"; } ?>
+   <?php echo "<br> <br>"; }?>
     
 </div>

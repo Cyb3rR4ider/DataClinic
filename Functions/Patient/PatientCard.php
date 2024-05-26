@@ -12,22 +12,18 @@ if (isset($_POST['passidview'])) {
     foreach($data_diagnosis as $dia){
         $doc_name = $dia->doctor_name; 
         $diag_date = $dia->diag_dt;
+        $diag_id_strored = $dia->diag_id;
+    } 
+
 
     $appointment = new Appointments();
     $appointment->app_pat_id = $patient_id_input;
     $data_apointment = $appointment->getAppointment();
-    // while($res = $data_apointment->fetch()){
-        
-    //     $app_id_stored = $appointment->app_id = $res['app_id'];
-    //     $app_stored = $appointment->app_status = $res['app_status'];
-    //     $app_type_stored = $appointment->app_type =$res['app_type'];
-    //     $app_dt_stored = $appointment->app_dt = $res['$app_dt_stored'];
-    //     $app_time_st_stored = $appointment->app_tm_st = $res['app_tm_st'];
-    //     $app_time_end_stored = $appointment->app_tm_end = $res['app_tm_end'];
-    //     $app_pat_id_stored = $appointment->app_pat_id = $res['app_pat_id'];
 
-    // }    
-    } 
+    $userTreatment = new Treatment();
+    $userTreatment->tr_diag_id = $diag_id_strored;
+    $data_treatment = $userTreatment->getTreatment(); 
+    
 ?>  
     <!-- TABS START-->
     

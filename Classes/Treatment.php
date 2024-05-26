@@ -19,18 +19,22 @@ class Treatment
     }
 
     function getTreatment()
-    {
+    {   $treatment = new ArrayObject();
+        $i=0;
         $query = "SELECT * FROM treatment WHERE tr_diag_id = ?;";
         $database = new Database();
         $database->connect();
-        $data = $database->execute($query, [$this->tr_diag_id]);
-        while ($row = $data->fetch()) {
-            $this->tr_id = $row["tr_id"];
-            $this->tr_desc = $row["tr_desc"];
-            $this->tr_st_dt = $row["tr_st_dt"];
-            $this->tr_end_dt = $row["tr_end_dt"];
-            $this->tr_diag_id = $row["tr_diag_id"];
+        $data_treatment = $database->execute($query, [$this->tr_diag_id]);
+        while ($row = $data_treatment->fetch()) {
+            $treatment[$i] = new Treatment();
+            $treatment[$i]->tr_id = $row["tr_id"];
+            $treatment[$i]->tr_desc = $row["tr_desc"];
+            $treatment[$i]->tr_st_dt = $row["tr_st_dt"];
+            $treatment[$i]->tr_end_dt = $row["tr_end_dt"];
+            $treatment[$i]->tr_diag_id = $row["tr_diag_id"];
+            $i++;
         }
+        return $treatment;
     }
 
     function searchTreatments()
