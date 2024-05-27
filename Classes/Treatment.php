@@ -18,6 +18,27 @@ class Treatment
         $this->tr_diag_id = Null;
     }
 
+    function getAllTreatments()
+    {   $treatment = new ArrayObject();
+        $i=0;
+        $query = "SELECT * FROM treatment;";
+        $database = new Database();
+        $database->connect();
+        $data_treatment = $database->execute($query, []);
+        while ($row = $data_treatment->fetch()) {
+            $treatment[$i] = new Treatment();
+            $treatment[$i]->tr_id = $row["tr_id"];
+            $treatment[$i]->tr_desc = $row["tr_desc"];
+            $treatment[$i]->tr_st_dt = $row["tr_st_dt"];
+            $treatment[$i]->tr_end_dt = $row["tr_end_dt"];
+            $treatment[$i]->tr_diag_id = $row["tr_diag_id"];
+        
+            $i++;
+        }
+        return $treatment;
+    }
+
+
     function getTreatment()
     {   $treatment = new ArrayObject();
         $i=0;
@@ -32,6 +53,7 @@ class Treatment
             $treatment[$i]->tr_st_dt = $row["tr_st_dt"];
             $treatment[$i]->tr_end_dt = $row["tr_end_dt"];
             $treatment[$i]->tr_diag_id = $row["tr_diag_id"];
+        
             $i++;
         }
         return $treatment;
@@ -54,6 +76,7 @@ class Treatment
             $treatments[$i]->tr_st_dt = $row["tr_st_dt"];
             $treatments[$i]->tr_end_dt = $row["tr_end_dt"];
             $treatments[$i]->tr_diag_id = $row["tr_diag_id"];
+            
             $i++;
         }
 

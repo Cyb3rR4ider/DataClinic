@@ -12,7 +12,7 @@
           Χρήστες
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="index.php?action=3">Προβολή όλων των χρηστών</a>
+          <a class="dropdown-item" href="index.php?action=3">Προβολή όλων των Xρηστών</a>
           <a class="dropdown-item" href="index.php?action=10">Εισαγωγή Χρήστη</a>
           <a class="dropdown-item" href="index.php?action=5">Αναζήτηση Χρήστη</a>
       </li>
@@ -35,6 +35,56 @@
           <a class="dropdown-item" href="index.php?action=21">Εισαγωγή Ραντεβού</a>
           <a class="dropdown-item" href="#">Αναζήτηση Ραντεβού</a>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Διαγνώσεις
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="index.php?action=23">Προβολή όλων των Διαγνωσεων</a>
+          <a class="dropdown-item" href="index.php?action=28">Εισαγωγή Διάγνωσης</a>
+          <a class="dropdown-item" href="">Αναζήτηση Διαγνωσεων</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Θεραπείες
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="index.php?action=24">Προβολή όλων των Θεραπειών</a>
+          <a class="dropdown-item" href="">Εισαγωγή Αγωγής</a>
+          <a class="dropdown-item" href="#">Αναζήτηση Αγωγών</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Ιατρικό Ιστορικό
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="index.php?action=25">Προβολή Ιατρικόυ Ιστορικού</a>
+          <a class="dropdown-item" href="">Εισαγωγή Ιατρικόυ Ιστορικού</a>
+          <a class="dropdown-item" href="#">Αναζήτηση Ιατρικόυ Ιστορικού</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Ιστορικό Πληρωμών
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="index.php?action=26">Προβολή Ιστορικού Πληρωμών</a>
+          <a class="dropdown-item" href="">Εισαγωγή Πληρωμής</a>
+          <a class="dropdown-item" href="#">Αναζήτηση Πληρωμής</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Ρόλοι Χρηστών
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="index.php?action=27">Προβολή Ρόλων</a>
+          <a class="dropdown-item" href="">Εισαγωγή Ρόλου</a>
+      </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Διαχείριση

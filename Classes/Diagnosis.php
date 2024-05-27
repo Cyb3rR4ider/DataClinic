@@ -17,6 +17,26 @@ class Diagnosis
         $this->diag_pat_id = NULL;
     }
 
+    function getAllDiagnosis(){
+        $alldiagnosis = new ArrayObject();
+        $query = "SELECT * FROM diagnosis;";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query, []);
+        $i = 0;
+        while ($row = $data->fetch()) {
+            $alldiagnosis[$i] = new Diagnosis();
+            $alldiagnosis[$i]->diag_id = $row["diag_id"];
+            $alldiagnosis[$i]->diag_dt = $row["diag_dt"];
+            $alldiagnosis[$i]->diag_desc = $row["diag_desc"];
+            $alldiagnosis[$i]->doctor_name =$row["doctor_name"];
+            $alldiagnosis[$i]->diag_pat_id = $row["diag_pat_id"];
+
+            $i++;
+        }
+        return $alldiagnosis;
+       
+    }
     function getDiagnosis(){
         
         $diagnosis = new ArrayObject();
@@ -30,8 +50,11 @@ class Diagnosis
             $diagnosis[$i]->diag_id = $row["diag_id"];
             $diagnosis[$i]->diag_dt = $row["diag_dt"];
             $diagnosis[$i]->diag_desc = $row["diag_desc"];
-            $diagnosis[$i]->doctor_name = $row["doctor_name"];
+            $diagnosis[$i]->doctor_name = !empty($row["doctor_name"]) ? $row["doctor_name"] : "Δεν υπάρχει όνομα γιατρού";
+            //$diagnosis[$i]->doctor_name = $row["doctor_name"];
             $diagnosis[$i]->diag_pat_id = $row["diag_pat_id"];
+
+             
             $i++;
         }
         return $diagnosis;

@@ -90,6 +90,40 @@ switch ($a) {
             include("Functions/Patient/AddPatient.php");
             break;
         }
+
+        case 23: {
+            include("Functions/Diagnosis/ViewAllDiagnosis.php");
+            break;
+        }
+        
+        case 24: {
+            include("Functions/Treatment/ViewAllTreatments.php");
+            break;
+        }
+
+        case 25: {
+            include("Functions/MedicalRecord/MedicalRecord.php");
+            break;
+        }
+
+        case 26: {
+            include("Functions/FinancialTransactions/ViewAllFinancialTransaction.php");
+            break;
+        }
+
+        case 27: {
+            include("Functions/Roles/ViewAllRoles.php");
+            break;
+        }
+
+        case 28 : {
+            include("Functions/Diagnosis/AddDiagnosis.php");
+            break;
+        }
+        case 29 : {
+            include("Functions/Diagnosis/DeleteDiagnosis.php");
+            break;
+        }
        
 
     }

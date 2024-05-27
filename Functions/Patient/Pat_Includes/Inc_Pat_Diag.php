@@ -3,11 +3,11 @@
 
     <!-- <div class="form-group">
         <label for="diagnosis-date">Ημερομηνία Διάγνωσης</label>
-        <input type="text" class="form-control" id="diagnosis-date" name="diagnosis-date" value="<?php echo $diag_date; ?>" readonly>
+        <input type="text" class="form-control" id="diagnosis-date" name="diagnosis-date" value="" readonly>
     </div> -->
     <div class="form-group">
         <label for="doctor-name">Όνομα Γιατρού</label>
-        <input type="text" value="<?php echo $doc_name ?>" class="form-control" id="doctor-name" name="doctor-name" readonly>
+        <input type="text" value="<?php if(empty($doc_name)){echo "Δεν υπάρχει Γιάτρος";}else{echo $doc_name;}?>" class="form-control" id="doctor-name" name="doctor-name" readonly>
     </div>
     <div class="form-group">
         <label for="diagnosis-details">Λεπτομέρειες Διάγνωσης</label>
@@ -23,8 +23,8 @@
         <?php
           foreach($data_diagnosis as $diagnosi){
             echo "<tr>";
-            echo "<td>". $diagnosi->diag_dt."</td?>" ;
-            echo "<td>". $diagnosi->diag_desc."</td?>" ;
+            echo "<td>". $diagnosi->diag_dt."</td?>";
+            echo "<td>". $diagnosi->diag_desc."</td?>";
             echo "</tr>";
           }?>
             </tbody>

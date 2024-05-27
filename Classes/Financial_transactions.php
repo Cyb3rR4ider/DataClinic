@@ -18,6 +18,28 @@ class Financial_transactions
         $this->fin_pat_id = null;
     }
 
+    function getallFinancialTransactions()
+    {
+        /* Search all the Financial Transactions based on the patient ID */
+        $financial_transactions = new ArrayObject();
+        $query = "SELECT * FROM financial_transactions;";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query, []);
+        $i = 0;
+        while ($row = $data->fetch()) {
+            $financial_transactions[$i] = new Financial_transactions();
+            $financial_transactions[$i]->fin_tr_id = $row["fin_tr_id"];
+            $financial_transactions[$i]->fin_tr_dt = $row["fin_tr_dt"];
+            $financial_transactions[$i]->fin_tr_type = $row["fin_tr_type"];
+            $financial_transactions[$i]->fin_tr_amount = $row["fin_tr_amount"];
+            $financial_transactions[$i]->fin_pat_id = $row["fin_pat_id"];
+            $i++;
+        }
+        return $financial_transactions;
+    }
+
+
     function searchFinancialTransactions()
     {
         /* Search all the Financial Transactions based on the patient ID */

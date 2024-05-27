@@ -9,19 +9,24 @@ if (isset($_POST['passidview'])) {
     $diag = new Diagnosis();
     $diag->diag_pat_id = $patient_id_input; //pass patient id
     $data_diagnosis = $diag->getDiagnosis();
-    foreach($data_diagnosis as $dia){
-        $doc_name = $dia->doctor_name; 
-        $diag_date = $dia->diag_dt;
-        $diag_id_strored = $dia->diag_id;
-    } 
 
+    foreach($data_diagnosis as $dia){
+        $doc_name = $dia->doctor_name;
+        $diag_date = $dia->diag_dt;
+        $diag_id_stored = $dia->diag_id;
+    } 
 
     $appointment = new Appointments();
     $appointment->app_pat_id = $patient_id_input;
     $data_apointment = $appointment->getAppointment();
 
     $userTreatment = new Treatment();
-    $userTreatment->tr_diag_id = $diag_id_strored;
+    if(!empty($diag_id_stored)){
+        $userTreatment->tr_diag_id = $diag_id_stored;
+    }else {
+        echo "Δεν υπαρχει διαθεσιμη αγωγη";
+    }
+    
     $data_treatment = $userTreatment->getTreatment(); 
     
 ?>  

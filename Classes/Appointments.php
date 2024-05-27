@@ -36,8 +36,8 @@ class Appointments
             $appointments[$i]->app_type = $row["app_type"];
             $appointments[$i]->app_dt = $row["app_dt"];
             $appointments[$i]->app_tm_st = $row["app_tm_st"];
-            $appointments[$i]->app_pat_id = $row["app_tm_end"];
-            $appointments[$i]->app_end = $row["app_pat_id"];
+            $appointments[$i]->app_tm_end = $row["app_tm_end"];
+            $appointments[$i]->app_pat_id = $row["app_pat_id"];
             $i++;
         }
 
@@ -67,7 +67,7 @@ class Appointments
     function insertAppointment()
     {
         /* Insert appointment */
-        $query = "INSERT INTO appointment(app_status, app_type, app_dt, app_tm_st, app_tm_end, app_pat_id) VALUES(?, ?, ?, ?, ?, ?);";
+        $query = "INSERT INTO appointments(app_status, app_type, app_dt, app_tm_st, app_tm_end, app_pat_id) VALUES(?, ?, ?, ?, ?, ?);";
         $database = new Database();
         $database->connect();
         $database->execute($query, [$this->app_status, $this->app_type, $this->app_dt, $this->app_tm_st, $this->app_tm_end, $this->app_pat_id]);
@@ -96,13 +96,16 @@ class Appointments
         $appointmentDate->setTime(0,0,0);
        
         if($today>$appointmentDate){
+            //$this->update_appointment_status();
             // $updateQuerytoZero = "UPDATE appointments SET app_status = 0 WHERE app_id = ?;";
             // $database->execute($updateQuerytoZero, [$this->app_id]);
+            
             return "Το ραντεβού έχει περάσει";
         }
         else if ($today == $appointmentDate){
             return "Το ραντεβού είναι σήμερα";
         }else {
+            //$this->update_appointment_status();
             // $updateQuerytoOne = "UPDATE appointments SET app_status = 1 WHERE app_id = ?;";
             // $database->execute($updateQuerytoOne, [$this->app_id]);
             
@@ -113,17 +116,17 @@ class Appointments
 
     }
 
-    // function update_appointment_status() {
-    //     $database = new Database();
-    //     $updateQuery = 
+   public function update_appointment_status() {
+        $database = new Database();
+        $updateQuery = 
             
-    //     "UPDATE appointments
-    //         SET app_status = CASE
-    //             WHEN CURDATE() > app_dt THEN 0
-    //             ELSE 1
-    //         END";
-    //     $database->execute($updateQuery, []);
-    // }
+        "UPDATE appointments
+            SET app_status = CASE
+                WHEN CURDATE() > app_dt THEN 0
+                ELSE 1
+            END";
+        $database->execute($updateQuery, []);
+    }
 
 
     function appointmentsDaysPassed($app_id){

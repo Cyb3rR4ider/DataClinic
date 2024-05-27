@@ -7,6 +7,9 @@ require_once("Classes/Patient.php");
 require_once("Classes/Appointments.php");
 require_once("Classes/Diagnosis.php");
 require_once("Classes/Treatment.php");
+require_once("Classes/Medical_Record.php");
+require_once("Classes/Financial_Transactions.php");
+require_once("Classes/Roles.php");
 
 ?>
 
