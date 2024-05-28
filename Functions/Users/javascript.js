@@ -13,7 +13,7 @@
                         input: input  //with the data input
                     },
 
-                    success: function(data) { //if the function success the data will shown in div section with id #searchresult
+                     success: function(data) { //if the function success the data will shown in div section with id #searchresult
                     
                        
                         $("#searchresult").html(data);

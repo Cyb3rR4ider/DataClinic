@@ -55,10 +55,11 @@ require_once("Classes/Roles.php");
       
     }
     include("Front_Modules/MainContent.php");
+    
 
     include("./Functions/Users/javascript.js")
     ?>
-
+    <img src="doctorback.png" style="width:100%; min-height:100vh;" alt="background-photo">
 </body>
 
 </html>

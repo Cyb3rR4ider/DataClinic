@@ -1,3 +1,12 @@
+<?php require_once "../../Classes/Database.php";
+require_once "../../Classes/Medical_Record.php" ?>
+<?php
+if (isset($_POST['input'])) {  //value in POST come from ajax method as data option
+    $search = $_POST['input'];
+    $mdr = new Medical_record();
+    $data = $mdr->searchMedicalRecords($search);
+    if ($data->rowCount() > 0) {
+?>
 <div class="container mt-5">
     <h2 class="d-flex justify-content-center">ΠΡΟΒΟΛΗ ΙΑΤΡΙΚΟΥ ΙΣΤΟΡΙΚΟΥ</h2>
     <table class="table table-striped">
@@ -13,18 +22,18 @@
         
                 <?php
                 $viewallmedicalrecord = new Medical_record();
-                $dataofmedicalrecord =  $viewallmedicalrecord->getallMedicalRecords();
-                foreach($dataofmedicalrecord as $row){
+                $dataofmedicalrecord =  $viewallmedicalrecord->searchMedicalRecords($search);
+                while($row = $dataofmedicalrecord->fetch()){
                     echo "<tr>";
-                    echo "<td>" . $row->mdr_id . "</td>";
-                    echo "<td>" . $row->mdr_desc . "</td>";
-                    echo "<td>" . $row->mdr_pat_id . "</td>";
+                    echo "<td>" . $viewallmedicalrecord->mdr_id = $row['mdr_id'] . "</td>";
+                    echo "<td>" . $viewallmedicalrecord->mdr_desc = $row['mdr_desc'] . "</td>";
+                    echo "<td>" . $viewallmedicalrecord->mdr_pat_id = $row['mdr_pat_id'] . "</td>";
                     
                 
                 ?>
                     <td>
                         <form style="float: left; padding: 2px;" method="post" action="index.php?action=30">
-                            <input style=" display:none ;color: red; width: 0px; height: 0px;" type="text" name="passiddelmd" value="<?php echo $row->mdr_id?>" readonly>
+                            <input style=" display:none ;color: red; width: 0px; height: 0px;" type="text" name="passiddelmd" value="<?php echo $viewallmedicalrecord->mdr_id?>" readonly>
                             <button type="submit" title="Διαγραφή Ιατρικου Ιστορικού" class="btn btn-danger btn-primary">
                                 <i class="fa fa-trash"></i></button>
                         </form>
@@ -39,3 +48,7 @@
 
     </table>
 </div>
+         <?php   } else {
+
+            }
+        }

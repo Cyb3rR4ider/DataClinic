@@ -59,28 +59,18 @@ class Treatment
         return $treatment;
     }
 
-    function searchTreatments()
+    function searchTreatments($name)
     {
-        /* Search Treatments based on a diagnosis ID */
-        $treatments = new ArrayObject();
-        $query = "SELECT * FROM treatment WHERE tr_diag_id = ?;";
+        $query = "SELECT * FROM treatment WHERE tr_id LIKE '%$name%' 
+        or tr_desc LIKE '%$name%'
+        or tr_st_dt LIKE '%$name%'
+        or tr_end_dt LIKE '%$name%' 
+        or tr_diag_id like '%$name%';";
         $database = new Database();
         $database->connect();
-        $data = $database->execute($query, [$this->tr_diag_id]);
-        $i = 0;
+        $data = $database->execute($query,[]);
+        return $data;
 
-        while ($row = $data->fetch()) {
-            $treatments[$i] = new Treatment();
-            $treatments[$i]->tr_id = $row["tr_id"];
-            $treatments[$i]->tr_desc = $row["tr_desc"];
-            $treatments[$i]->tr_st_dt = $row["tr_st_dt"];
-            $treatments[$i]->tr_end_dt = $row["tr_end_dt"];
-            $treatments[$i]->tr_diag_id = $row["tr_diag_id"];
-            
-            $i++;
-        }
-
-        return $treatments;
     }
 
     function deleteTreatment()

@@ -34,24 +34,16 @@ class Medical_record
     }
 
 
-    function searchMedicalRecords()
+    function searchMedicalRecords($name)
     {
         /* Search all the Medical Records based on the patient ID */
-        $medical_records = new ArrayObject();
-        $query = "SELECT * from medical_record WHERE mdr_pat_id = ?;";
-        $database = new Database();
-        $database->connect();
-        $data = $database->execute($query, [$this->mdr_pat_id]);
-        $i = 0;
-
-        while ($row = $data->fetch()) {
-            $medical_records[$i] = new Medical_record();
-            $medical_records[$i]->mdr_id = $row["mdr_id"];
-            $medical_records[$i]->mdr_desc = $row["mdr_desc"];
-            $medical_records[$i]->mdr_pat_id = $row["mdr_pat_id"];
-            $i++;
-        }
-        return $medical_records;
+        $query = "SELECT * FROM medical_record WHERE mdr_id LIKE '%$name%' 
+            or mdr_desc LIKE '$name%' 
+            or mdr_pat_id like '%$name%'; ";
+            $database = new Database();
+            $database->connect();
+            $data = $database->execute($query,[]);
+            return $data;
     }
 
     function deleteMedicalRecord()

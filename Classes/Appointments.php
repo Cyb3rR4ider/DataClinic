@@ -20,6 +20,19 @@ class Appointments
         $this->app_pat_id = NULL;
     }
 
+    function searchAppointment($name){
+        $query = "SELECT * FROM appointments WHERE app_status LIKE '$name%'
+        or app_type LIKE '%$name%' 
+        or app_dt LIKE '%$name%'
+        or app_tm_end LIKE '%$name%' 
+        or app_pat_id LIKE '%$name%'
+        or app_tm_st like '%$name%'; ";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query,[]);
+        return $data;
+    }
+
     function getAllAppointments()
     {
         /* Search the database and retrieve all the users, we return them as objects to use them in the front-end*/

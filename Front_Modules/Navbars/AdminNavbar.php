@@ -24,7 +24,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=7">Προβολή όλων των Ασθενών</a>
           <a class="dropdown-item" href="index.php?action=22">Εισαγωγή Ασθενή</a>
-          <a class="dropdown-item" href="#">Αναζήτηση Ασθενή</a>
+          <a class="dropdown-item" href="index.php?action=40">Αναζήτηση Ασθενή</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,7 +33,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=8">Προβολή όλων των Ραντεβού</a>
           <a class="dropdown-item" href="index.php?action=21">Εισαγωγή Ραντεβού</a>
-          <a class="dropdown-item" href="#">Αναζήτηση Ραντεβού</a>
+          <a class="dropdown-item" href="index.php?action=36">Αναζήτηση Ραντεβού</a>
       </li>
 
       <li class="nav-item dropdown">
@@ -43,7 +43,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=23">Προβολή όλων των Διαγνωσεων</a>
           <a class="dropdown-item" href="index.php?action=28">Εισαγωγή Διάγνωσης</a>
-          <a class="dropdown-item" href="">Αναζήτηση Διαγνωσεων</a>
+          <a class="dropdown-item" href="index.php?action=37">Αναζήτηση Διαγνωσεων</a>
       </li>
 
       <li class="nav-item dropdown">
@@ -52,8 +52,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=24">Προβολή όλων των Θεραπειών</a>
-          <a class="dropdown-item" href="">Εισαγωγή Αγωγής</a>
-          <a class="dropdown-item" href="#">Αναζήτηση Αγωγών</a>
+          <a class="dropdown-item" href="index.php?action=34">Εισαγωγή Θεραπείας</a>
+          <a class="dropdown-item" href="index.php?action=41">Αναζήτηση Θεραπειών</a>
       </li>
 
       <li class="nav-item dropdown">
@@ -62,18 +62,18 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=25">Προβολή Ιατρικόυ Ιστορικού</a>
-          <a class="dropdown-item" href="">Εισαγωγή Ιατρικόυ Ιστορικού</a>
-          <a class="dropdown-item" href="#">Αναζήτηση Ιατρικόυ Ιστορικού</a>
+          <a class="dropdown-item" href="index.php?action=31">Εισαγωγή Ιατρικόυ Ιστορικού</a>
+          <a class="dropdown-item" href="index.php?action=39">Αναζήτηση Ιατρικόυ Ιστορικού</a>
       </li>
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Ιστορικό Πληρωμών
+          Πληρωμές
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=26">Προβολή Ιστορικού Πληρωμών</a>
-          <a class="dropdown-item" href="">Εισαγωγή Πληρωμής</a>
-          <a class="dropdown-item" href="#">Αναζήτηση Πληρωμής</a>
+          <a class="dropdown-item" href="index.php?action=33">Εισαγωγή Πληρωμής</a>
+          <a class="dropdown-item" href="index.php?action=38">Αναζήτηση Πληρωμής</a>
       </li>
 
       <li class="nav-item dropdown">
@@ -82,7 +82,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="index.php?action=27">Προβολή Ρόλων</a>
-          <a class="dropdown-item" href="">Εισαγωγή Ρόλου</a>
+          <!-- <a class="dropdown-item" href="">Εισαγωγή Ρόλου</a> -->
       </li>
 
       <li class="nav-item dropdown">
@@ -90,7 +90,7 @@
           Διαχείριση
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="index.php?action=3">Προβολή όλων των Ρυθμίσεων</a>
+          <a class="dropdown-item" href="">Προβολή όλων των Ρυθμίσεων</a>
       </li>
     </ul>
     <form class="d-flex" action="Functions/Logout.php">

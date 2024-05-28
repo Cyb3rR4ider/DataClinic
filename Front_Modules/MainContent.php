@@ -124,7 +124,65 @@ switch ($a) {
             include("Functions/Diagnosis/DeleteDiagnosis.php");
             break;
         }
-       
+
+        case 30 : {
+            include("Functions/MedicalRecord/DeleteMedicalRecord.php");
+            break;
+        }
+        case 31 : {
+            include("Functions/MedicalRecord/AddMedicalRecord.php");
+            break;
+        }
+        case 32 : {
+            include("Functions/FinancialTransactions/DeleteFinancialTransaction.php");
+            break;
+        }
+
+        case 33 : {
+            include("Functions/FinancialTransactions/AddFinancialTransaction.php");
+            break;
+        }
+
+        case 34: {
+            include("Functions/Treatment/AddTreatment.php");
+            break;
+        }
+
+        case 35: {
+            include("Functions/Treatment/DeleteTreatment.php");
+            break;
+        }
+
+        case 36 : {
+            include("Functions/Appointments/SearchAppointment.php");
+            break;
+        }
+
+        case 37 : {
+            include("Functions/Diagnosis/SearchDiagnosis.php");
+            break;
+        }
+
+        case 38 : {
+            include("Functions/FinancialTransactions/SeachFinancialTransactions.php");
+            break;
+        }
+
+        case 39 : {
+            include("Functions/MedicalRecord/SearchMedicalRecord.php");
+            break;
+        }
+
+        case 40 : {
+            include("Functions/Patient/SearchPatient.php");
+            break;
+        }
+
+        case 41 : {
+            include("Functions/Treatment/SearchTreatment.php");
+            break;
+        }
+
 
     }
     

@@ -53,7 +53,7 @@ class Diagnosis
             $diagnosis[$i]->doctor_name = !empty($row["doctor_name"]) ? $row["doctor_name"] : "Δεν υπάρχει όνομα γιατρού";
             //$diagnosis[$i]->doctor_name = $row["doctor_name"];
             $diagnosis[$i]->diag_pat_id = $row["diag_pat_id"];
-
+ 
              
             $i++;
         }
@@ -61,26 +61,20 @@ class Diagnosis
         
     }
 
-    function searchDiagnosis()
+    function searchDiagnosis($name)
     {
         /* Search all the Diagnosis based on the patient ID */
-        $diagnosis = new ArrayObject();
-        $query = "SELECT * from diagnosis where diag_pat_id = ?;";
+
+        $query = "SELECT * FROM diagnosis WHERE diag_desc LIKE '%$name%' 
+        or diag_dt LIKE '$name%'
+        or diag_pat_id LIKE '$name%'
+        or doctor_name LIKE '$name%' 
+        or diag_id like '%$name%'; ";
         $database = new Database();
         $database->connect();
-        $data = $database->execute($query, [$this->diag_pat_id]);
-        $i = 0;
-        while ($row = $data->fetch()) {
-            $diagnosis[$i] = new Diagnosis();
-            $diagnosis[$i]->diag_id = $row["diag_id"];
-            $diagnosis[$i]->diag_dt = $row["diag_dt"];
-            $diagnosis[$i]->diag_desc = $row["diag_desc"];
-            $diagnosis[$i]->doctor_name = $row["doctor_name"];
-            $diagnosis[$i]->diag_pat_id = $row["diag_pat_id"];
-            $i++;
-        }
-
-        return $diagnosis;
+        $data = $database->execute($query,[]);
+        return $data;
+        
     }
 
     function deleteDiagnosis()

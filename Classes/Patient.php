@@ -47,6 +47,21 @@ class Patient
         return $patients;
     }
 
+    function searchPatient($name){
+
+        $query = "SELECT * FROM patient WHERE pat_id LIKE '%$name%' 
+        or pat_name LIKE '$name%'
+        or pat_surname LIKE '$name%'
+        or pat_apoint_valid LIKE '$name%'
+        or pat_address LIKE '$name%'
+        or pat_tel LIKE '$name%'
+        or pat_birth LIKE '$name%' 
+        or pat_amk like '%$name%'; ";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query,[]);
+        return $data;
+    }
    
 
     function getPatient()
