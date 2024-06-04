@@ -47,25 +47,48 @@ class Patient
         return $patients;
     }
 
+    function searchPatient($name){
+
+        $query = "SELECT * FROM patient WHERE pat_id LIKE '%$name%' 
+        or pat_name LIKE '$name%'
+        or pat_surname LIKE '$name%'
+        or pat_apoint_valid LIKE '$name%'
+        or pat_address LIKE '$name%'
+        or pat_tel LIKE '$name%'
+        or pat_birth LIKE '$name%' 
+        or pat_amk like '%$name%'; ";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query,[]);
+        return $data;
+    }
    
 
     function getPatient()
     {
-         
         $query = "SELECT  * FROM patient WHERE pat_id = ?;";
         $database = new Database();
         $database->connect();
-        $patient = $database->execute($query, [$this->pat_id]);
-
-        return $patient;
-    }
+        $data = $database->execute($query, [$this->pat_id]);
+        while($row = $data->fetch()){
+            $this->pat_id = $row["pat_id"];
+            $this->pat_name = $row["pat_name"];
+            $this->pat_surname = $row["pat_surname"];
+            $this->pat_apoint_valid = $row["pat_apoint_valid"];
+            $this->pat_address = $row["pat_address"];
+            $this->pat_birth = $row["pat_birth"];
+            $this->pat_amk = $row["pat_amk"];
+            $this->pat_tel = $row["pat_tel"];
+        }    
+            
+   }
 
     function updatePatient()
     {
         /* Update a Patient in the database */
         $query = "UPDATE from patient 
         SET pat_name = ?, pat_surname = ?, pat_apoint_valid = ?, 
-        pat_address = ?, pat_tel = ?, pat_birth = ?, pat_birth = ?, pat_amk = ?
+        pat_address = ?, pat_tel = ?, pat_birth = ?, pat_amk = ?
         WHERE pat_id = ?;";
         $database = new Database();
         $database->connect();
@@ -78,12 +101,12 @@ class Patient
     function insertPatient()
     {
         /* Insert a Patient in the database */
-        $query = "INSERT INTO patient(pat_name, pat_surname, pat_apoint_valid, pat_address, pat_tel, pat_birth, pat_amk) VALUES(?, ?, ?, ?, ?, ?, ?";
+        $query = "INSERT INTO patient(`pat_name`, `pat_surname`, `pat_apoint_valid`, `pat_address`, `pat_tel`, `pat_birth`, `pat_amk`) VALUES(?, ?, ?, ?, ?, ?, ?);";
         $database = new Database();
         $database->connect();
-        $database->execute($query, [
-            $this->pat_name, $this->pat_surname,
-            $this->pat_apoint_valid, $this->pat_address, $this->pat_tel, $this->pat_birth, $this->pat_amk
-        ]);
+        $data = $database->execute($query, [$this->pat_name, $this->pat_surname,$this->pat_apoint_valid, $this->pat_address, $this->pat_tel, $this->pat_birth, $this->pat_amk]);
+        if(!$data == ""){
+            echo "Added Patient";
+        }else echo "Failed";
     }
 }

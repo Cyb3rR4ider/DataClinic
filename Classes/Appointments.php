@@ -20,6 +20,19 @@ class Appointments
         $this->app_pat_id = NULL;
     }
 
+    function searchAppointment($name){
+        $query = "SELECT * FROM appointments WHERE app_status LIKE '$name%'
+        or app_type LIKE '%$name%' 
+        or app_dt LIKE '%$name%'
+        or app_tm_end LIKE '%$name%' 
+        or app_pat_id LIKE '%$name%'
+        or app_tm_st like '%$name%'; ";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query,[]);
+        return $data;
+    }
+
     function getAllAppointments()
     {
         /* Search the database and retrieve all the users, we return them as objects to use them in the front-end*/
@@ -36,8 +49,8 @@ class Appointments
             $appointments[$i]->app_type = $row["app_type"];
             $appointments[$i]->app_dt = $row["app_dt"];
             $appointments[$i]->app_tm_st = $row["app_tm_st"];
-            $appointments[$i]->app_pat_id = $row["app_tm_end"];
-            $appointments[$i]->app_end = $row["app_pat_id"];
+            $appointments[$i]->app_tm_end = $row["app_tm_end"];
+            $appointments[$i]->app_pat_id = $row["app_pat_id"];
             $i++;
         }
 
@@ -67,7 +80,7 @@ class Appointments
     function insertAppointment()
     {
         /* Insert appointment */
-        $query = "INSERT INTO appointment(app_status, app_type, app_dt, app_tm_st, app_tm_end, app_pat_id) VALUES(?, ?, ?, ?, ?, ?);";
+        $query = "INSERT INTO appointments(app_status, app_type, app_dt, app_tm_st, app_tm_end, app_pat_id) VALUES(?, ?, ?, ?, ?, ?);";
         $database = new Database();
         $database->connect();
         $database->execute($query, [$this->app_status, $this->app_type, $this->app_dt, $this->app_tm_st, $this->app_tm_end, $this->app_pat_id]);
@@ -75,11 +88,72 @@ class Appointments
     function getAppointment()
     {
          
-        $query = "SELECT  * FROM appointments WHERE app_id = ?;";
+        $query = "SELECT * FROM appointments WHERE app_pat_id = ?;";
         $database = new Database();
         $database->connect();
-        $appoint = $database->execute($query, [$this->app_id]);
+        $appoint = $database->execute($query, [$this->app_pat_id]);
 
         return $appoint;
     }
+
+    function status($x){
+        if($x == 1){
+           return "Εκρεμμες";
+        }return "Ολοκληρωμένο";
+    } 
+
+    function comparedates($app_date){
+        $today = new DateTime();
+        $today->setTime(0,0,0);
+        $appointmentDate = Datetime::createFromFormat('Y-m-d H:i:s',$app_date);
+        $appointmentDate->setTime(0,0,0);
+       
+        if($today>$appointmentDate){
+            //$this->update_appointment_status();
+            // $updateQuerytoZero = "UPDATE appointments SET app_status = 0 WHERE app_id = ?;";
+            // $database->execute($updateQuerytoZero, [$this->app_id]);
+            
+            return "Το ραντεβού έχει περάσει";
+        }
+        else if ($today == $appointmentDate){
+            return "Το ραντεβού είναι σήμερα";
+        }else {
+            //$this->update_appointment_status();
+            // $updateQuerytoOne = "UPDATE appointments SET app_status = 1 WHERE app_id = ?;";
+            // $database->execute($updateQuerytoOne, [$this->app_id]);
+            
+            $internal = $today->diff($appointmentDate);
+            $daystogo = $internal->days;
+            return "Απομενουν $daystogo μέρες για το ραντεβού";
+        }
+
+    }
+
+   public function update_appointment_status() {
+        $database = new Database();
+        $updateQuery = "UPDATE appointments SET app_status = 0 WHERE CURDATE() > app_dt;";
+            
+        // "UPDATE appointments
+        //     SET app_status = CASE
+        //         WHEN CURDATE() > app_dt THEN 0
+        //         ELSE 1
+        //     END";
+        $database->execute($updateQuery, []);
+    }
+
+
+    function appointmentsDaysPassed($app_id){
+        $query = "SELECT (CURRENT_DATE > app_dt) as daysago FROM `appointments` WHERE app_id = ?;";
+        $database = new Database();
+        $database->connect();
+        $appoint_days_passed = $database->execute($query, [$this->app_pat_id]);
+        while($row = $appoint_days_passed->fetch()){
+            $app = $row;
+            $appsep = implode(",",$app); // convert the object to string 
+        }
+
+        return $appsep;
+    }
+
+    
 }

@@ -17,11 +17,30 @@ class Diagnosis
         $this->diag_pat_id = NULL;
     }
 
-    function searchDiagnosis()
-    {
-        /* Search all the Diagnosis based on the patient ID */
+    function getAllDiagnosis(){
+        $alldiagnosis = new ArrayObject();
+        $query = "SELECT * FROM diagnosis;";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query, []);
+        $i = 0;
+        while ($row = $data->fetch()) {
+            $alldiagnosis[$i] = new Diagnosis();
+            $alldiagnosis[$i]->diag_id = $row["diag_id"];
+            $alldiagnosis[$i]->diag_dt = $row["diag_dt"];
+            $alldiagnosis[$i]->diag_desc = $row["diag_desc"];
+            $alldiagnosis[$i]->doctor_name =$row["doctor_name"];
+            $alldiagnosis[$i]->diag_pat_id = $row["diag_pat_id"];
+
+            $i++;
+        }
+        return $alldiagnosis;
+       
+    }
+    function getDiagnosis(){
+        
         $diagnosis = new ArrayObject();
-        $query = "SELECT * from diagnosis where diag_pat_id = ?;";
+        $query = "SELECT * FROM diagnosis WHERE diag_pat_id = ?;";
         $database = new Database();
         $database->connect();
         $data = $database->execute($query, [$this->diag_pat_id]);
@@ -31,12 +50,31 @@ class Diagnosis
             $diagnosis[$i]->diag_id = $row["diag_id"];
             $diagnosis[$i]->diag_dt = $row["diag_dt"];
             $diagnosis[$i]->diag_desc = $row["diag_desc"];
-            $diagnosis[$i]->doctor_name = $row["doctor_name"];
+            $diagnosis[$i]->doctor_name = !empty($row["doctor_name"]) ? $row["doctor_name"] : "Δεν υπάρχει όνομα γιατρού";
+            //$diagnosis[$i]->doctor_name = $row["doctor_name"];
             $diagnosis[$i]->diag_pat_id = $row["diag_pat_id"];
+ 
+             
             $i++;
         }
-
         return $diagnosis;
+        
+    }
+
+    function searchDiagnosis($name)
+    {
+        /* Search all the Diagnosis based on the patient ID */
+
+        $query = "SELECT * FROM diagnosis WHERE diag_desc LIKE '%$name%' 
+        or diag_dt LIKE '$name%'
+        or diag_pat_id LIKE '$name%'
+        or doctor_name LIKE '$name%' 
+        or diag_id like '%$name%'; ";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query,[]);
+        return $data;
+        
     }
 
     function deleteDiagnosis()

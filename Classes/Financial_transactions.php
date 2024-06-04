@@ -18,14 +18,14 @@ class Financial_transactions
         $this->fin_pat_id = null;
     }
 
-    function searchFinancialTransactions()
+    function getallFinancialTransactions()
     {
         /* Search all the Financial Transactions based on the patient ID */
         $financial_transactions = new ArrayObject();
-        $query = "SELECT * FROM financial_transactions WHERE fin_pat_id = ?;";
+        $query = "SELECT * FROM financial_transactions;";
         $database = new Database();
         $database->connect();
-        $data = $database->execute($query, [$this->fin_pat_id]);
+        $data = $database->execute($query, []);
         $i = 0;
         while ($row = $data->fetch()) {
             $financial_transactions[$i] = new Financial_transactions();
@@ -37,6 +37,23 @@ class Financial_transactions
             $i++;
         }
         return $financial_transactions;
+    }
+
+
+    function searchFinancialTransactions($name)
+    {
+        /* Search all the Financial Transactions based on the patient ID */
+            $query = "SELECT * FROM financial_transactions WHERE fin_tr_id LIKE '%$name%' 
+            or fin_tr_dt LIKE '$name%'
+            or fin_tr_type LIKE '$name%'
+            or fin_tr_amount LIKE '$name%' 
+            or fin_pat_id like '%$name%'; ";
+            $database = new Database();
+            $database->connect();
+            $data = $database->execute($query,[]);
+            return $data;
+            
+        
     }
 
     function deleteFinancialTransaction()
