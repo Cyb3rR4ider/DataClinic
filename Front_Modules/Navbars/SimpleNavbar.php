@@ -43,9 +43,24 @@
           <a class="dropdown-item" href="index.php?action=3">Προβολή όλων των Ρυθμίσεων</a>
       </li>
     </ul>
-    <form class="d-flex" action="Functions/Logout.php">
-      <button class="btn btn-outline-success" type="submit">Logout</button>
-    </form>
+    <ul class="navbar-nav mx-auto">
+
+      <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+          <i class="fa fa-user" aria-hidden="true"> <?php echo $_SESSION['username']; ?></i>
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Dashboard</a>
+          <a class="dropdown-item" href="#">Edit Profile</a>
+          <a class="dropdown-item" href="Functions/Logout.php">Log Out</a>
+
+        </div>
+
+      </li>
+    </ul>
   </div>
   </div>
 </nav>

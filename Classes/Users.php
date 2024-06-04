@@ -18,27 +18,27 @@ class Users
         $this->us_role_id = NULL;
     } //end of construct
 
-    function login($password)
+    public function login($password)
     {
-        /* Search in the database the user that match the username - password and retrieve all the information
-            to fill the object with them, so we can use them in the authentication. */
-        $query = "SELECT `user_id`, `username` , `user_email`, `user_tel`, 
+        $db = new Database();
+        $db->connect();
+        $qry = "SELECT `user_id`, `username` , `user_email`, `user_tel`, 
         `us_role_id`, `password`
         FROM `users` 
         WHERE `username`= ?";
-        $database = new Database();
-        $database->connect();
-        $data = $database->execute($query, [$this->username]);
-        $row = $data->fetch();
-        if (password_verify($password, $row["password"])) {
-            $this->user_id = $row["user_id"];
-            $this->username = $row["username"];
-            $this->user_email = $row["user_email"];
-            $this->user_tel = $row["user_tel"];
-            $this->us_role_id = $row["us_role_id"];
-        }
-    }
+        $res = $db->execute($qry, [$this->username]);
 
+        if ($res->rowCount() == 1) { // αν το res εχει 1 γραμμη 
+            $row = $res->fetch();
+            if (password_verify($password, $row["password"])) {
+                $this->user_id = $row["user_id"];
+                $this->username = $row["username"];
+                $this->user_email = $row["user_email"];
+                $this->user_tel = $row["user_tel"];
+                $this->us_role_id = $row["us_role_id"];
+            }
+        }
+    } //end of userLogin
 
     function getAllUsers()
     {
@@ -91,10 +91,10 @@ class Users
     {
         try {
             /* Update user based on the ID */
-            $query = "Update users SET username = ?, user_email = ?, user_tel = ?, us_role_id = ?, password = ? where user_id = ?";
+            $query = "Update users SET username = ?, user_email = ?, user_tel = ?, us_role_id = ? where user_id = ?";
             $database = new Database();
             $database->connect();
-            $x= $database->execute($query, [$this->username, $this->user_email, $this->user_tel, $this->us_role_id, $this->password, $this->user_id]);
+            $x= $database->execute($query, [$this->username, $this->user_email, $this->user_tel, $this->us_role_id,$this->user_id]);
             if($x){
                 //$_SESSION['status'] = 'Επιτυχής Εισαγωγή';
                 echo "<h1> Ενημέρωση Επιτυχης</h1>";
@@ -126,11 +126,11 @@ class Users
         $database->connect();
         $success = $database->execute($query, [$hashed_password, $this->user_id]);
 
-        if ($success) {
-            echo "Επιτυχής αλλαγή κωδικού πρόσβασης!";
-        } else {
-            echo "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.";
-        }
+        // if ($success) {
+        //     echo "Επιτυχής αλλαγή κωδικού πρόσβασης!";
+        // } else {
+        //     echo "Κάτι πήγε στραβά. Δοκιμάστε ξανά αργότερα.";
+        // }
     }
 
     function searchUser($name){
@@ -142,5 +142,53 @@ class Users
         $database->connect();
         $data = $database->execute($query,[]);
         return $data;
+    }
+
+     public function passwordHash(){
+        $db = new Database();
+        $db->connect();
+        $password = 'user80_password';
+        $hP = password_hash($password, PASSWORD_DEFAULT);
+        $query = "UPDATE `users` SET `password` = '$hP' WHERE `user_id`= 73";
+        $res=$db->execute($query,[]);
+
+    }
+
+    function updateResetToken($hash_token, $datetime, $email)
+    {
+        /* Update and add the token and the expiration of it so we can reset the pass */
+
+        $query = "UPDATE users 
+        SET reset_token_hash = ?, reset_token_expires_at = ?
+        WHERE user_email = ?;
+        ";
+
+        $database = new Database();
+        $database->connect();
+        $database->execute($query, [$hash_token, $datetime, $email]);
+    }
+
+    function getUserFromToken($token)
+    {
+        /* Search all the users and return them as arraylist of objects. */
+        $query = "SELECT * FROM `users` WHERE reset_token_hash = ?;";
+        $database = new Database();
+        $database->connect();
+        $data = $database->execute($query, [$token]);
+        $user = $data->fetch();
+
+        return $user;
+    }
+
+    function removeTokenDate($token, $datetime) {
+                /* Update and add the token and the expiration of it so we can reset the pass */
+
+                $query = "UPDATE users 
+                SET reset_token_expires_at = ?
+                WHERE reset_token_hash = ?;";
+        
+                $database = new Database();
+                $database->connect();
+                $database->execute($query, [$datetime,$token]);
     }
 }//End of Users Class

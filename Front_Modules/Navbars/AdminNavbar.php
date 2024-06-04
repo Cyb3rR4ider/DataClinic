@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light "style="background-color: #e3f2fd;" id="usernavbar">
-  <a class="navbar-brand" href="index.php">DataClinic</a>
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;" id="usernavbar">
+  <a class="navbar-brand" href="index.php" style="font-family: crimson;">  
+    <img src="././dataclinic_logo/dataclinic-high-resolution-logo-black-transparent.png" alt="dataclinic-logo" style="width:80px; height:60px;">
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="index.php" style="font-family: crimson;"></a>
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -93,9 +96,25 @@
           <a class="dropdown-item" href="">Προβολή όλων των Ρυθμίσεων</a>
       </li>
     </ul>
-    <form class="d-flex" action="Functions/Logout.php">
-      <button class="btn btn-outline-primary" type="submit">Logout</button>
-    </form>
+    <ul class="navbar-nav mx-auto">
+
+      <li class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+          <i class="fa fa-user" aria-hidden="true"> <?php echo $_SESSION['username']; ?></i>
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="index.php?action=50">About</a>
+          <a class="dropdown-item" href="#">Edit Profile</a>
+          <a class="dropdown-item" href="Functions/Logout.php">Log Out</a>
+
+        </div>
+
+      </li>
+    </ul>
+
   </div>
   </div>
 </nav>

@@ -183,6 +183,12 @@ switch ($a) {
             break;
         }
 
+        case 50 : {
+            include("about.php");
+            break;
+        }
+
+
 
     }
     

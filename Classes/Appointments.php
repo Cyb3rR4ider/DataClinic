@@ -131,13 +131,13 @@ class Appointments
 
    public function update_appointment_status() {
         $database = new Database();
-        $updateQuery = 
+        $updateQuery = "UPDATE appointments SET app_status = 0 WHERE CURDATE() > app_dt;";
             
-        "UPDATE appointments
-            SET app_status = CASE
-                WHEN CURDATE() > app_dt THEN 0
-                ELSE 1
-            END";
+        // "UPDATE appointments
+        //     SET app_status = CASE
+        //         WHEN CURDATE() > app_dt THEN 0
+        //         ELSE 1
+        //     END";
         $database->execute($updateQuery, []);
     }
 
