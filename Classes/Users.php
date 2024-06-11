@@ -30,6 +30,7 @@ class Users
         $database->connect();
         $data = $database->execute($query, [$this->username]);
         $row = $data->fetch();
+        error_log(print_r($row,true));
         if (password_verify($password, $row["password"])) {
             $this->user_id = $row["user_id"];
             $this->username = $row["username"];

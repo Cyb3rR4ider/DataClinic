@@ -2,10 +2,10 @@
 class Database
 {
 
-    private $host; //h ip tou server ths bashs
-    private $database; //h bash pou 8a doulepsoume
-    private $user; //username
-    private $pass; //password
+    private $host = 'localhost'; //h ip tou server ths bashs
+    private $database ='drappdb'; //h bash pou 8a doulepsoume
+    private $user ='root'; //username
+    private $pass= ''; //password
     private $pdo;
     private $opt;
 

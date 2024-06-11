@@ -529,7 +529,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `user_email`, `user_tel`, `us_pat_id`, `us_role_id`) VALUES
-(1, 'admin', '$2y$10$InIknDcGAHrvTFrQIgjQn.6V2HVW6BXXY8thRo54WGn6zprgiWHl.', 'admin@example.com', 6981234567, NULL, 4),
+(1, 'admin', '$2y$10$xCoGQM7MKT2c0FeQ7Qd/SuH/g0YyjCtS5UA7eH/.Gng.eOfzmXagq', 'admin@example.com', 6981234567, NULL, 4),
 (2, 'receptionist1', '$2y$10$33Iq73VV5bDLn/63pTmKoOyw8fO9nr5Ab/60beKvaC5IMqWa1Y4Uy', 'receptionist1@example.com', 6981234568, NULL, 3),
 (3, 'receptionist2', '$2y$10$s38n6KWfeoFBdkyXqHq45OFmaghxiFzUFy0jfx6GsrvfiR8lKk5o.', 'receptionist2@example.com', 6981234569, NULL, 3),
 (4, 'doctor1', '$2y$10$k0hIsrOr7FplTeKfYzPPQ.tvtCjMABIhIAuAW0YYmYz5ftZOrz3Ge', 'doctor1@example.com', 6981234570, NULL, 2),
